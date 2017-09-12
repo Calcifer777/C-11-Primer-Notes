@@ -38,6 +38,7 @@ In expression that mix signed and unsigned values, the signed values are automat
 Integer literals can be represented in decimal, octal (leading `0`), and hexadecimal form (`0x`).
 
   **Character and String Literals**
+  
 | Prefix		| Meaning		| Type 		|
 | ------------- | ------------- | --------- |
 | u 			| Unicode 16 ch | `char16_t`|
@@ -46,6 +47,7 @@ Integer literals can be represented in decimal, octal (leading `0`), and hexadec
 | u8 			| UTF-8			| `char`	|
 
   **Integer Literals**
+
 | Suffix		| Type 		|
 | ------------- | --------- |
 | u or U		| unsigned	|
@@ -53,6 +55,7 @@ Integer literals can be represented in decimal, octal (leading `0`), and hexadec
 | ll or LL		| long long |
 
   **Floating-Point Literals**
+
 | Suffix		| Type 			|
 | ------------- | -------------	|
 | f or F		| float 		|
