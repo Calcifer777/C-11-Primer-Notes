@@ -11,11 +11,11 @@
 | `char32_t`	| 32 bits		|
 | `short`		| 16 bits		|
 | `int`			| 16 bits		|
-| `long`		| 32 bits		|
-| `long long`	| 64 bits		|
-| `float`		| 6 sig. dig	|
-| `double`		| 10 sig. dig	|
-| `long double`	| 10 sig. dig	|
+| `long`		| 32 bits				|
+| `long long`	| 64 bits				|
+| `float`		| 6 significant digits	|
+| `double`		| 6 significant digits	|
+| `long double`	| 6 significant digits	|
 
 An `int` type will be at least as large as `short`; a `long` at least as large as an `int` and so forth.
 
@@ -38,7 +38,7 @@ In expression that mix signed and unsigned values, the signed values are automat
 Integer literals can be represented in decimal, octal (leading `0`), and hexadecimal form (`0x`).
 
   **Character and String Literals**
-  
+
 | Prefix		| Meaning		| Type 		|
 | ------------- | ------------- | --------- |
 | u 			| Unicode 16 ch | `char16_t`|
@@ -70,6 +70,44 @@ The compiler appends a null charachter - `\0` - to character string literals.
 For representing numbers in scientific notation, the exponent is indicated by `E` or `e`.
 
 ## 2.2 Variables
+
+*type specifier* *variable_name_1*, *variable_name_2*, ... ;
+
+Each name in the list of the variable definition has the same *type specifier*.
+
+**Object**: a region of memory the can contain data and has a type.
+
+An object that is **initialized** gets the specified value at the moment it is created. 
+
+**List initialization** : initializes an object enclosing its value in curly brackets. E.g.: `int var_name = {10};`. List initialization will give an error when initializing an object with a value whose built-in type might lead to a loss of information.
+
+When defining a variable without an initializer, the variable is **default initialized**. Each object type establishes whether an object of that type can be defined without an initialized (e.g. the default value of a string is *empty*).
+- variables defined outside any function body are initialized by default to 0;
+- variables initialized inside a function are **uninitialized**, i.e. their value is undefined.
+
+### Variable Declaration and Definitions
+
+**Separate compilation** : let the program define and use objects in different files.
+
+**Declaration** : makes a name known to the program.
+
+**Definition** : creates the associated identity.
+
+In order to declare a variable without defining it, use the `extern` keyword. E.g.
+	`int extern var_name`
+
+### Identifiers
+
+- Can be composed of letters, digits and the underscore character;
+- There is no limit  to the length of an identifier;
+- Identifiers are case sensitive;
+- Identifiers must begin with a letter or an underscore.
+
+### Scope of a Name
+
+*Global scope variable* : accessible throughout the program. Global variables are denoted with the notation `::var_name`
+
+If a local variable has the same name of a global variable, any reference to that name will refer to the local variable, unless `::` is used.
 
 ## 2.3 Compound Types
 
