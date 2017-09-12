@@ -23,17 +23,17 @@ The types `int`, `short`, `long` and `long long` are signed; add `unsigned` in t
 
 The `unsigned char` type holds values from 0 to 255. `signed char` holds values rom -128 to 127.
 
-#### Type Conversion
+### Type Conversion
 
 * Assigning a non-`bool` arithmetic type to a `bool` object, the result is false iff the value is 0; otherwise 1. Viceversa, the result is 1 if true, 0 if false.
 * Assigning a floating-point value to an integer type truncates the decimal part. Viceversa, the decimal part is set to 0.
 * Assigning an out-of-range value to an unsigned type returns remainder of the value modulo the number of values the target type can hold; the value "wraps around" the type ranges.
-* Assigning an out-of-range value to a signed type returns undefined (the program might work or crash or produce "wrong" values). Program that use implementation-defined behavior are called *nonportable*.
+* Assigning an out-of-range value to a signed type returns undefined (the program might work or crash or produce "wrong" values). Programs that use implementation-defined behavior are called *nonportable*.
 
 
 In expression that mix signed and unsigned values, the signed values are automatically converted to unsigned.
 
-##### Literals
+### Literals
 
 Integer literals can be represented in decimal, octal (leading `0`), and hexadecimal form (`0x`).
 
@@ -87,14 +87,14 @@ When defining a variable without an initializer, the variable is **default initi
 
 ### Variable Declaration and Definitions
 
-**Separate compilation** : let the program define and use objects in different files.
+**Separate compilation** : The process of dividing a large program into many smaller source files.
 
 **Declaration** : makes a name known to the program.
 
 **Definition** : creates the associated identity.
 
 In order to declare a variable without defining it, use the `extern` keyword. E.g.
-	`int extern var_name`
+	`int extern var_name;`
 
 ### Identifiers
 
@@ -111,6 +111,71 @@ If a local variable has the same name of a global variable, any reference to tha
 
 ## 2.3 Compound Types
 
+A *compound type* is a type that is defined in terms of another type.
+
+### References
+
+`int &ref_val = variable_name;`
+
+Define alternative names for objects. A reference must always be initialized. Once initialized the reference is bound to the object and can not be re-assigned.
+
+References are not objects. Therefore, a reference can not be defined to another reference; it can be bound only to an object, not a literal or a more gneral expression.
+
+The type of a reference and the object to which the reference refers must match exactly.
+
+### Pointers
+
+`pointer_type *pointer_name = &reference_object`
+
+A **pointer** is a compound type that “points to” another type, i.e. whose value is a memory address(sort of). Like references, pointers are used for indirect access to other objects. Unlike a reference, a pointer is an object in its own right. Pointers can be assigned and copied; a single pointer can point to several different objects over its lifetime. 
+
+Unlike a reference, a pointer need not be initialized at the time it is defined. Like other built-in types, pointers defined at block scope have undefined value if they are not initialized.
+
+The type of the pointer must  be the same as the type of the referenced object.
+
+The **pointer value** can be in one of four states:
+- it is a valid object;
+- it points to the location just immediately after past the end of an object; 
+- it is null;
+- it is invalid;
+
+In order to return the value of a pointed object, use the **deference operator** `*`. E.g.
+```c++
+	int val = 1;
+	int *p = &val;
+	std::cout << "Ref. object value: " << *p << "\n";
+	std::cout << "Pointer value (memory address): " << p << "\n";
+```
+
+A **null pointer** does not point to any object. A pointer can be initialized to a nullpointer as
+```c++
+	int *p1 = nullptr;
+	int *p2 = 0;		\\ must #include cstdlib
+	int *p3 = NULL; 	\\ NULL is a preprocessor variable
+```
+Two pointers are equal if they hold the same address and unequal otherwise.
+
+The type `void*` is a special pointer type that can hold the address of any object. `void*`pointers can not be used to change the value of the object to which they point.
+
+A pointer to a pointer is declared by `**`; for 3-level pointers use `***` and so forth. In order to obtain the value  of the pointed object, it is necessary to deference the  pointer with an equal amount of `&`.
+
+### UnderstandingCompound Type Declarations
+
+####References to Pointers to
+
+```c++
+	int val = 42;
+	int *p;			// p points to int
+	int *&r = p;	// r is a reference (&r); the type of the reference is pointer (*&r); r refers to a pointer of type int (int * &r)
+	r = &val;
+
+
+	std::cout << "val: " << val << "\n";
+	std::cout << "p: " << **&r << "\n";
+	/*std::cout << "???: " << 0x28fef8 << "\n";
+	*/
+
+```
 ## 2.4 'const' Qualifier
 
 ## 2.5 Dealing with Types
