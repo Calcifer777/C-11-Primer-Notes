@@ -181,10 +181,10 @@ A pointer to a pointer is declared by `**`; for 3-level pointers use `***` and s
 
 ```c++
 int val = 42;
-int *p;							// p points to int
-int *&r = p;					// r is a reference (&r); the type of the reference is pointer (*&r); 
-								// r refers to a pointer of type int (int * &r)
-r = &val;						// p now points to val
+int *p;			// p points to int
+int *&r = p;	// r is a reference (&r); the type of the reference is pointer (*&r); 
+				// r refers to a pointer of type int (int * &r)
+r = &val;		// p now points to val
 
 cout << "val: " << val << "\n";
 cout << "p: " << **&r << "\n";	// these two lines will print the same value
