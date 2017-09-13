@@ -2,9 +2,9 @@
 
 To return the type of a variable/object:
 ```c++
-	#include <typeinfo>
-	...
-	cout << typeid(var_name).name() << endl;
+#include <typeinfo>
+...
+cout << typeid(var_name).name() << endl;
 ```
 
 ## 2.1 Primitive Built-in Types
@@ -33,7 +33,7 @@ The `unsigned char` type holds values from 0 to 255. `signed char` holds values 
 
 ### Type Conversion
 
-* Assigning a non-`bool` arithmetic type to a `bool` object, the result is false iff the value is 0; otherwise 1. Viceversa, the result is 1 if true, 0 if false.
+* Assigning a non-`bool` arithmetic type to a `bool` object, the result is false iff the value is `0`; otherwise `1`. Viceversa, the result is `1` if true, `0` if false.
 * Assigning a floating-point value to an integer type truncates the decimal part. Viceversa, the decimal part is set to 0.
 * Assigning an out-of-range value to an unsigned type returns remainder of the value modulo the number of values the target type can hold; the value "wraps around" the type ranges.
 * Assigning an out-of-range value to a signed type returns undefined (the program might work or crash or produce "wrong" values). Programs that use implementation-defined behavior are called *nonportable*.
@@ -79,7 +79,7 @@ For representing numbers in scientific notation, the exponent is indicated by `E
 
 ## 2.2 Variables
 
-*type specifier* *variable_name_1*, *variable_name_2*, ... ;
+`type specifier* *variable_name_1*, *variable_name_2*, ... ;`
 
 Each name in the list of the variable definition has the same *type specifier*.
 
@@ -149,17 +149,17 @@ The **pointer value** can be in one of four states:
 
 In order to return the value of a pointed object, use the **deference operator** `*`. E.g.
 ```c++
-	int val = 1;
-	int *p = &val;
-	cout << "Ref. object value: " << *p << "\n";
-	cout << "Pointer value (memory address): " << p << "\n";
+int val = 1;
+int *p = &val;
+cout << "Ref. object value: " << *p << "\n";
+cout << "Pointer value (memory address): " << p << "\n";
 ```
 
 A **null pointer** does not point to any object. A pointer can be initialized to a nullpointer as
 ```c++
-	int *p1 = nullptr;
-	int *p2 = 0;		\\ must #include cstdlib
-	int *p3 = NULL; 	\\ NULL is a preprocessor variable
+int *p1 = nullptr;
+int *p2 = 0;		\\ must #include cstdlib
+int *p3 = NULL; 	\\ NULL is a preprocessor variable
 ```
 Two pointers are equal if they hold the same address and unequal otherwise.
 
@@ -167,19 +167,19 @@ The type `void*` is a special pointer type that can hold the address of any obje
 
 A pointer to a pointer is declared by `**`; for 3-level pointers use `***` and so forth. In order to obtain the value  of the pointed object, it is necessary to deference the  pointer with an equal amount of `&`.
 
-### UnderstandingCompound Type Declarations
+### Understanding Compound Type Declarations
 
-####References to Pointers to
+#### References to Pointers
 
 ```c++
-	int val = 42;
-	int *p;				// p points to int
-	int *&r = p;		// r is a reference (&r); the type of the reference is pointer (*&r); 
-						// r refers to a pointer of type int (int * &r)
-	r = &val;			// p now points to val
+int val = 42;
+int *p;							// p points to int
+int *&r = p;					// r is a reference (&r); the type of the reference is pointer (*&r); 
+								// r refers to a pointer of type int (int * &r)
+r = &val;						// p now points to val
 
-	cout << "val: " << val << "\n";
-	cout << "p: " << **&r << "\n";		// these two lines will print the same value
+cout << "val: " << val << "\n";
+cout << "p: " << **&r << "\n";	// these two lines will print the same value
 ```
 ## 2.4 `const` Qualifier
 
@@ -187,7 +187,9 @@ A pointer to a pointer is declared by `**`; for 3-level pointers use `***` and s
 
 ** A `const` object must be initialized**.
 
-```c++ const long var_name ```
+```c++ 
+const long var_name;
+```
 
 When using the same constant variable in multiple files, the `extern` qualifier has to be used both in the initializer and in each of the declarations.
 
@@ -196,8 +198,8 @@ A `const` object may be referenced or pointed only by a `const` reference or a `
 ### Reference to `const`
 
 ```c++
-	const char var = 'a';
-	const char &ref = a;
+const char var = 'a';
+const char &ref = a;
 ```
 Reference to `const` make it impossible to change the value of the bound variable through that reference.
 
@@ -213,8 +215,8 @@ The value of a variable to which a reference to `const` is bound may change.
 ### Pointers and const
 
 ```c++
-	const double new_var = 7;
-	const double *ptr = &new_var;
+const double new_var = 7;
+const double *ptr = &new_var;
 ```
 
 As with references, it is possible to use a pointer to `const` to a non-`const` object.
@@ -222,8 +224,8 @@ As with references, it is possible to use a pointer to `const` to a non-`const` 
 It is possible that a pointer, which is an object, may be constant. In this case, the value to which the pointer is bound may not be changed. Also, as with any `const` object, its value must be initialized.
 
 ```c++
-	float new_var = 1.0;
-	float * const ptr = &new_var;
+float new_var = 1.0;
+float * const ptr = &new_var;
 ```
 
 **Top-level `const` ** : indicates that the pointer itself is constant.
@@ -244,21 +246,19 @@ A constant expression can be of one of the following types:
 
 With regards to pointers, `constexpr` imposes a top-level `const` to the pointers they address. E.g.:
 ```c++
-	constexpr int *p1 = nullptr;
+constexpr int *p1 = nullptr;
 
-	const int var2 = 5;
-	constexpr int *p2 = &var2;
+const int var2 = 5;
+constexpr int *p2 = &var2;		// these two declarations are legal, as both p1 and p2 are  const pointers
 ```
 
 ## 2.5 Dealing with Types
 
 A **type alias** is a name that is a synonym for another type. 
 
-A type alias can be defined:
--  with `typedef` 
-	`typedef long long mybignumber;`
-- with an *alias declaration*
-	`alias mybignumber = long long`
+A type alias can be defined as follows:
+- `typedef long long mybignumber;`
+- `alias mybignumber = long long`
 
 #### Pointers, *const*, and Type Aliases
 
@@ -284,3 +284,26 @@ A variable of type auto has to be initialized in its declaration.
 if variable is a reference. When we apply decltype to a variable without any parentheses, we get the type of that variable. If we wrap the variable’s name in one or more sets of parentheses, the compiler will evaluate the operand as an expression.
 
 [Differences between `auto` and `decltype`](http://thbecker.net/articles/auto_and_decltype/section_01.html)
+
+## 2.6 Defining Data Structures with `struct`
+
+```c++
+struct myclass {
+	class body
+};
+```
+
+The class body defines the **members** of that class.
+
+With **data members**, the definition (and default initalization) is the same as normal variables. **In-class initializers** may not be specified inside parentheses.
+
+When a class is defined outside a function, there may be only one definition of that class in any given source file. If a class is used in multiple files, it needs to have the same definition in each of them; in order to ensure that, usually classes - as well as `const` and `constexpr` - are defined in **header files**.
+
+
+**header guard**: preprocessor variable used to prevent a header from bing included more than once in a single file.
+
+`#define`: defines a name as a preprocessor variable
+
+`ifdef` (`ifndef`): return `TRUE` (`FALSE`) when the input variable is (not) already defined as a preprocessor variable. Every statement that follows is processed until `#endif`.
+
+Preprocessor variables names do not respect C++ scoping rules. They must be unique throughout the program.
