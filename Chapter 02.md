@@ -80,7 +80,9 @@ For representing numbers in scientific notation, the exponent is indicated by `E
 ## 2.2 Variables
 
 ```c++
-type specifier* *variable_name_1*, *variable_name_2*, ... ;
+int var1, var2, ... ;
+long var3;
+...
 ```
 
 Each name in the list of the variable definition has the same *type specifier*.
