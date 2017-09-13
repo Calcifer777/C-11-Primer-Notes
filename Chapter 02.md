@@ -79,7 +79,9 @@ For representing numbers in scientific notation, the exponent is indicated by `E
 
 ## 2.2 Variables
 
-`type specifier* *variable_name_1*, *variable_name_2*, ... ;`
+```c++
+type specifier* *variable_name_1*, *variable_name_2*, ... ;
+```
 
 Each name in the list of the variable definition has the same *type specifier*.
 
@@ -123,7 +125,9 @@ A *compound type* is a type that is defined in terms of another type.
 
 ### References
 
-`int &ref_val = variable_name;`
+```c++
+int &ref_val = variable_name;
+```
 
 Define alternative names for objects. A reference must always be initialized. Once initialized the reference is bound to the object and can not be re-assigned.
 
@@ -133,7 +137,9 @@ The type of a reference and the object to which the reference refers must match 
 
 ### Pointers
 
-`pointer_type *pointer_name = &reference_object`
+```c++
+pointer_type *pointer_name = &reference_object
+```
 
 A **pointer** is a compound type that “points to” another type, i.e. whose value is a memory address(sort of). Like references, pointers are used for indirect access to other objects. Unlike a reference, a pointer is an object in its own right. Pointers can be assigned and copied; a single pointer can point to several different objects over its lifetime. 
 
