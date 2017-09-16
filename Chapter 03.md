@@ -41,7 +41,7 @@ Using *=* copy initializes the string. Using brackets uses *direct initializatio
 | Code				| Result 					|
 | ----------------- | ------------------------- |
 | `os << s` 		| Writes `s` in the output 	|
-| `is >> s`			| Reads the string `si` from the input as saves it as `s`; When reading strings from input lines, `cin` reads until the first whitespace;	|
+| `is >> s`			| Reads the string `si` from the input as saves it as `s`.<br /> When reading strings from input lines, `cin` reads until the first whitespace;	|
 | `getline(is, s)`	| Reads a line of input from `is` into `s`	|
 | `s.empty()` 		| TRUE is `s` is empty		|
 | `s.size()` 		| Returns the number of characters in `s`in a `string::size_type` value	|
