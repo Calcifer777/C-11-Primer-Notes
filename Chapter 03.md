@@ -141,7 +141,7 @@ If the vector holds elements of a built-in type, then the element initializer ha
 | `iter.begin()`		| Denotes the first element in iter |
 | `iter.end()`			| DEnotes one past the last last element in `iter`|; the iterator returned is referred to as the **off-the-end-operator** |
 
-### Iterator Types
+**Iterator Types**
 
 | Code				| Result 			|
 | ----------------------------- | ----------------------------- |
@@ -154,10 +154,19 @@ If the object is `const`, then `.begin` and `.end` return a `const_iterator`; if
 
 As do the `begin` and `end` members, these members return iterators to the first and one past the last element in the container. However, regardless of whether the vector (or string) is `const`, they return a `const_iterator`.
 
-`(*it).empty()` \\ dereferences the iterator `it` and calls the member *empty* on the resulting object.
+`(*it).empty()` \\ dereferences the iterator `it` and calls the member *empty* on the resulting object.. This Command is equivalent to the `->` operator.
 
+**Important** Loops that use iterators should not add elements to the container to which the iterators refer.
 
+**Operations supported by `vector` and `string` operators**
 
+| Code				| Result 			|
+| ----------------------------- | ----------------------------- |
+| `iter + n`, `iter - n` 	| Returns an **operator** `n` elements forward/backward within the container |	|
+| `iter += n`, `iter -= n`	| Assigns to `iter` the value of adding/subtracting `n` from/to `iter` |	|
+| `iter1-iter2`	| Returns the number of places from `iter1` to `iter2`. The result type is a signed integral type named
+`difference_type`	|
+| `<`, `<=`, `>`, `>=`	| One operator is less than another if it appears in the container before the one referred to by the other iterator		|
 
 ## 3.5 Arrays
 
