@@ -170,6 +170,28 @@ As do the `begin` and `end` members, these members return iterators to the first
 
 ## 3.5 Arrays
 
+Like a vector, an array is a container of unnamed objects of a single type that we access by
+position. **Unlike a vector, arrays have fixed size**.
+
+If the array declarator has the form `a[d]`, where `a` is the name being defined and `d` is the dimension of the array. The
+dimension specifies the number of elements and must be greater than zero. The number of elements in an array is part of the array’s type. As a result, the dimension must be known at compile time, which means that the dimension must
+be a constant expression (**`constexpr`**).
+
+Arrays can also be list initialized, in which case we need not to declare the dimension.
+
+As with variables of built-in type, a default-initialized array of built-in type that is defined inside a function will have undefined values.
+
+**Character arrays** can be initialized from string literals.
+
+``` c++
+	int (*pointerToArray)[10] = &arr;
+	// pointerToArray points to an array of 10 ints
+	
+	int *(&arrRef)[10] = ptr;
+	// arrRef is a reference to an int array (ptr) of size 10
+	
+```
+
 ## 3.6 Multidimensional Arrays
 
 
