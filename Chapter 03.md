@@ -117,20 +117,59 @@ If the vector holds elements of a built-in type, then the element initializer ha
 
 ### Vector operations
 
-| Code 				| Result 							|
-| ----------------- | --------------------------------- |
-| `v.empty()`		| TRUE if *v* is empty 				|
-| `v.size()`		| Returns the size of v 			|
-| `v.push_back(obj)`| Appends to v 						|
+| Code 				| Result 				|
+| ----------------- 		| --------------------------------- 	|
+| `v.empty()`			| TRUE if *v* is empty 			|
+| `v.size()`			| Returns the size of v 		|
+| `v.push_back(obj)`		| Appends to v 				|
 | `v[n]`			| Returns the nth element of v 		|
 | `v1 = v2`			| **v1** is now equal to *v2* 		|
-| `v1 = {a, b, ...}`| **v1** is now *{a,b, ...}*		|
-| `v1 == v2`		| TRUE if **v1** and *v2* are equal |
-| <, <=, >, >=		| Uses dictionary order				|
+| `v1 = {a, b, ...}`		| **v1** is now *{a,b, ...}*		|
+| `v1 == v2`			| TRUE if **v1** and *v2* are equal 	|
+| <, <=, >, >=			| Uses dictionary order			|
 | `++v[n]`			| Increments the value of the nth index |
 
 ## 3.4 Introducind Iterators
 
+| Code 				| Result 				|
+| ----------------- 		| --------------------------------- 	|
+| `*iter`			| Returns a reference to the element denoted by the iterator iter 			|
+| `iter->mem`			| Dereferences `iter` and fetches the member named mem from the underlying element; equivalent to `{+iter}.menu` |
+| `++iter`, `--iter`		| Increments/decrements `iter` to refer to the next/previous element in the container 				|
+| `iter1 == iter2`		| Compares two iterators for equality, i.e. whether they denote the same element  or if they are the off-the-end iterator for the same container	|
+| `iter1 != iter2`		| Compares two iterators for inequality 		|
+| `iter.begin()`		| Denotes the first element in iter |
+| `iter.end()`			| DEnotes one past the last last element in `iter`|; the iterator returned is referred to as the **off-the-end-operator** |
+
+### Iterator Types
+
+| Code				| Result 			|
+| ----------------------------- | ----------------------------- |
+| `vector<int>::iterator it;` 	| Can r/w `vector<int>` elements	|
+| `string::iterator it2`	| Can r/w characters in a string	|
+| `vector<int>::const_iterator`	| Can r but not w elements		|
+| `string::constr_iterator it4`	| Can read but not w elements		|
+
+If the object is `const`, then `.begin` and `.end` return a `const_iterator`; if the object is not `const`, they return `iterator`.
+
+As do the `begin` and `end` members, these members return iterators to the first and one past the last element in the container. However, regardless of whether the vector (or string) is `const`, they return a `const_iterator`.
+
+`(*it).empty()` \\ dereferences the iterator `it` and calls the member *empty* on the resulting object.
+
+
+
+
 ## 3.5 Arrays
 
 ## 3.6 Multidimensional Arrays
+
+
+
+
+
+
+
+
+
+
+
