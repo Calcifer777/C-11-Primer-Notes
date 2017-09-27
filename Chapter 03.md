@@ -187,13 +187,70 @@ As with variables of built-in type, a default-initialized array of built-in type
 	int (*pointerToArray)[10] = &arr;
 	// pointerToArray points to an array of 10 ints
 	
-	int *(&arrRef)[10] = ptr;
-	// arrRef is a reference to an int array (ptr) of size 10
-	
+	int *(&arrRef)[10] = arr;
+	// arrRef is a reference to an int array (arr) of size 10
 ```
 
-## 3.6 Multidimensional Arrays
+When using a variable to subscript an array, that subscript should have type `size_t`.
 
+### Pointers and array
+
+* When using an array as the target of a pointer, the compiler substitutes a pointer to the first elelemt.
+
+``` c++
+string *p2 = nums; // equivalent to p2 = &nums[0]
+```
+
+* When using an array as an initializer for a variable using `auto` (E.g. `auto ia(arr);`) the deduced type is a pointer , not an array.
+In this case, `ia` points to the first element in `arr`. This implicit conversion does not happen when using `decltype`. E.g. `decltype(arr) ia = {0, 1, 2, 3}` creates an array of 4 `int`.
+
+Pointers to array elements support the same operations as iterators on vectors and strings.
+
+**Example of iterator methods applied to arrays**
+``` c++
+	int ia[] = {0, 1, 2, 3};
+	int *pbeg = begin(ia);
+	int *pend = end(ia);
+	
+	while (pbeg != pend && *pbeg >=0) {
+		cout << *pbeg;
+		pbeg++;
+	}
+```
+
+It is possible to initialize a vector from an array. E.g.
+```c++
+int int_arr[] = {0, 1, 2, 3, 4, 5};
+// ivec has six elements; each is a copy of the corresponding element in int_arr
+vector<int> ivec(begin(int_arr), end(int_arr));
+```
+
+**Advice: Use Library Types Instead of Arrays**
+
+### Multidimensional Arrays ###
+
+Multidimensional arrays are defined as:
+
+```c++
+int ia[2][3] = {
+{1, 2, 3},
+{4, 5, 6}};
+// ia is an array of ints of 2 arrays of 3 elements each
+```
+Use of the for range loop with md arrays:
+
+```c++
+// print the value of each element in ia, with each inner array on its own line
+// p points to an array of four ints
+for (auto p = ia; p != ia + 3; ++p) {
+// q points to the first element of an array of four ints; that is, q points to an int
+for (auto q = p; q != p + 4; ++q)
+cout << *q << ' ';
+cout << endl;
+}
+```
+
+**Care for the difference and handling of C-style stirngs!**
 
 
 
