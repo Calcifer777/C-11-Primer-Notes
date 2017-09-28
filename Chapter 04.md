@@ -34,9 +34,8 @@ Lvalues and rvalues also differ when used with `decltype`. When we apply decltyp
 
 ### Increment and decrement operators 
 
-**Prefix operator** `++i`
-
-**Postfix operator** `i++`
+* Prefix operator `++i`
+* Postfix operator `i++`
 
 ### Member access operator
 
