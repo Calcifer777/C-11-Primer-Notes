@@ -99,23 +99,15 @@ types are converted to a common type.
 
 ### Explicit conversions
 
-** Static Cast **
+**Static Cast**
 `type var = static-name<type> (expression)`
 
-** Const Cast **
+**Const Cast**
 `const_cast<type>` 
 Can cast "away" the const, so that the object can be rewritten. `const_cast` only changes constness
 
-** Reinterpret Cast **
+**Reinterpret Cast**
 Generally performs a low-level reinterpretation of the bit pattern of its operands
 
-** Dynamic Cast**
+**Dynamic Cast**
 Given a class Base of which there is a derived class Derived, dynamic_cast will convert a Base pointer to a Derived pointer if and only if the actual object pointed at is in fact a Derived object.
-
-
-
-
-
-
-
-
