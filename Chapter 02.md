@@ -125,6 +125,8 @@ If a local variable has the same name of a global variable, any reference to tha
 
 A *compound type* is a type that is defined in terms of another type.
 
+[In depth explanation of *address of* - `*` - and *dereference* - `&` - operators](http://www.cplusplus.com/doc/tutorial/pointers/)
+
 ### References
 
 ```c++
