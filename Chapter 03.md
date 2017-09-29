@@ -136,7 +136,7 @@ If the vector holds elements of a built-in type, then the element initializer ha
 | Code 				| Result 				|
 | -----------------------------	| --------------------------------- 	|
 | `*iter`			| Returns a reference to the element denoted by the iterator iter 			|
-| `iter->mem`			| Dereferences `iter` and fetches the member named mem from the underlying element; equivalent to `{+iter}.menu` |
+| `iter->mem`			| Dereferences `iter` and fetches the member named `mem` from the underlying element; equivalent to `{+iter}.mem` |
 | `++iter`, `--iter`		| Increments/decrements `iter` to refer to the next/previous element in the container 	|
 | `iter1 == iter2`		| Compares two iterators for equality, i.e. whether they denote the same element  or if they are the off-the-end iterator for the same container	|
 | `iter1 != iter2`		| Compares two iterators for inequality 						|
