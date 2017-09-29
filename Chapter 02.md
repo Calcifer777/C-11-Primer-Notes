@@ -160,8 +160,8 @@ The **pointer value** can be in one of four states:
 In order to return the value of a pointed object, use the **deference operator** `*`. E.g.
 ```c++
 int val = 1;
-int *p = &val;
-cout << "Ref. object value: " << *p << "\n";
+int *p = &val;			// This is NOT the dereference operator *
+cout << "Ref. object value: " << *p << "\n";	// This is the dereference operator
 cout << "Pointer value (memory address): " << p << "\n";
 ```
 
