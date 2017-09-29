@@ -131,6 +131,8 @@ If the vector holds elements of a built-in type, then the element initializer ha
 
 ## 3.4 Introducind Iterators
 
+[General overview of iterators](https://www.cprogramming.com/tutorial/stl/iterators.html)
+
 | Code 				| Result 				|
 | -----------------------------	| --------------------------------- 	|
 | `*iter`			| Returns a reference to the element denoted by the iterator iter 			|
