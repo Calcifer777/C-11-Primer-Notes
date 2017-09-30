@@ -171,28 +171,5 @@ Headers that contain exception classes:
 | `out_of_range`		| LE: used a value ouside the valid range										|
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* **`new`**: defines the `bad_alloc` exception type.
+* **`type_info`**: defines the `bad_cast` exception type.
