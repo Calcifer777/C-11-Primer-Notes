@@ -13,13 +13,13 @@
 **`If`**
 
 ```c++
-	if (cond) {
-		statement
-	} else if {
-		statement 
-	} else {
-		statement
-	}
+if (cond) {
+	statement
+} else if {
+	statement 
+} else {
+	statement
+}
 ```
 
 *Dangling else*: Colloquial term used to refer to the problem of how to process nested if statements in which there are more ifs than elses. In C++, an else is
@@ -29,17 +29,17 @@ which if a given else should match.
 **`switch`**
 
 ```c++
-	switch (variable) {
-		case intConstExpr1: 	// Case label: the value must be an integral constant expression
-			statement1;
-			break;
-		...
-		case intConstExprN:
-			statement;
-			break;
-		default:
-			statement;
-			break;
+switch (variable) {
+	case intConstExpr1: 	// Case label: the value must be an integral constant expression
+		statement1;
+		break;
+	...
+	case intConstExprN:
+		statement;
+		break;
+	default:
+		statement;
+		break;
 	}
 ```
 
