@@ -47,6 +47,9 @@ If a variable needs to be declared inside a switch statement AND for a particula
 
 ## Iterative statements
 
+`while`
 
 
 
+
+`for`
