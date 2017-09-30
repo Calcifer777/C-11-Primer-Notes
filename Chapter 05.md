@@ -47,9 +47,62 @@ If a variable needs to be declared inside a switch statement AND for a particula
 
 ## Iterative statements
 
-`while`
+**`while`**
+
+```c++
+while (cond) {
+    statement
+}
+```
+
+**`do while`**
+
+do { 
+    statement
+} while (*condition*);      // Remember the ";" !!!
+
+Diffently from the `while` statement, it ensures that the loop is executed at least once.
+
+It is not possible to define variables inside the *condition*.
+
+**`for`**
+
+```c++
+for(*initializer*; *condition*; *expression*) {
+    statement
+}
+```
+
+It is possible to initialize multiple variables within the same `for` statement.
+
+It is possible to omit any among the *init-statement*, *condition* and/or *expression* with a null statement.
+
+**Range `for`**
+
+for (*declaration* : *expression*) {
+    statement
+}
+
+*expression* must represent a sequence or a container.
+
+*declaration* defines a variable, such that it is  possible to convert any element of the expression sequence to the avariable `type`.
+
+It not possible to add/remove elements to a container through  a range `for` statement.
+
+## Jump statements
 
 
 
 
-`for`
+
+
+
+
+
+
+
+
+
+
+
+
