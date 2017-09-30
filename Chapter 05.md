@@ -1,6 +1,6 @@
 # Statements
 
-## Simple and compound statements
+## Simple and Compound Statements
 
 **Simple statements**
 * *Expression statement*: expression followed by a `;`. The expression is evaluated and the result discarded. 
@@ -8,7 +8,7 @@
 
 **Compound Statements (blocks)**: a sequence of statements surrounded by a pair of curly braces Variables defined in the control structure are visible only within that statement. and are out of scope after the statement ends.
 
-## Conditional statements
+## Conditional Statements
 
 **`If`**
 
@@ -45,7 +45,7 @@ switch (variable) {
 
 If a variable needs to be declared inside a switch statement AND for a particulare *case*, it is necessary define it inside a block.
 
-## Iterative statements
+## Iterative Statements
 
 **`while`**
 
@@ -89,7 +89,53 @@ for (*declaration* : *expression*) {
 
 It not possible to add/remove elements to a container through  a range `for` statement.
 
-## Jump statements
+## Jump Statements
+
+**`break`**
+
+A break statement terminates the nearest enclosing `while`, `do while`, `for`, or `switch` statement. Execution resumes at the statement immediately following the terminated statement.
+
+A break can appear only within an iteration statement or switch statement (including inside statements or blocks nested inside such loops).
+
+A break affects only the nearest enclosing loop or switch:
+
+**`continue`**
+
+A continue statement terminates the current iteration of the nearest enclosing loop and immediately begins the next iteration. 
+
+A continue can appear only inside a `for`, `while`, or `do while` loop, including inside statements or blocks nested inside
+such loops.
+
+Like the break statement, a continue inside a nested loop affects only the nearest enclosing loop.
+
+Unlike a break, a continue may appear inside a switch only if that switch is embedded inside an iterative statement.
+
+**`goto` (DO NOT USE IT)**
+
+A goto statement provides an unconditional jump from the goto to a another statement in the same function.
+
+**labeled statement**: any statement 
+
+## `try` Blocks and Exception Handling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
