@@ -114,17 +114,61 @@ Unlike a break, a continue may appear inside a switch only if that switch is emb
 
 A goto statement provides an unconditional jump from the goto to a another statement in the same function.
 
-**labeled statement**: any statement 
+**labeled statement**: any statement that is preceded by an identifier followed by a colon.
+
+```c++
+
+goto end;	// Jumps to the statement labelled "end"
+
+end : return; 	// "end" is the label for this statement
+```
+
+A jump backward over an already executed definition is okay. Jumping back to a
+point before a variable is defined destroys the variable and constructs it again
 
 ## `try` Blocks and Exception Handling
 
+Exception handling supports this cooperation between the detecting and handling parts of a program. In C++, exception handling involves
+* **`throw` expressions**, which the detecting part uses to indicate that it encountered something it can’t handle. We say that a *throw* raises an *exception*.
+* **`try` blocks**, which the handling part uses to deal with an exception. A `try` block starts with the keyword try and ends with one or more `catch` clauses. Exceptions thrown from code executed inside a `try` block are usually handled by one of the `catch` clauses. Because they “handle” the exception, catch clauses are also known as *exception handlers*.
+• A set of *exception classes* that are used to pass information about what happened between a throw and an associated catch.
 
+**`throw`**
 
+```c++
+throw runtime_error("Error description");
+```
 
+**`try` blocks**
 
+```c++ 
+try {
+	program-statements
+} catch (exception-declaration) {
+	handler-statements
+} catch (exceltion-declaration) {
+	handler-statements
+} // ...
+```
 
+### Standard Exceptions
 
+Headers that contain exception classes:
+* **`exception`**: defines the most general kind of exception class named `exception`. It communicates only that an exception occurred but provides no additional information.
+* **`stdexcept`**: defines several hgeneral-purpouse exception classes, as listed below.
 
+| Code 					| Description																	|
+| --------------------- | ----------------------------------------------------------------------------- |
+| `exception`			| General exception																|
+| `runtime_error`		| Problem that can be detected only at runtime (RTE)							|
+| `range_error`			| RTE: result generated outside the range of values that are meaningful			|
+| `overflow_error`		| RTE: computation that overflowed												|
+| `underflow_error`		| RTE: computation that underflowed												|
+| `logic_error`			| Error in the logic of the program (L)											|
+| `domain_error`		| LE: argument for which no result exists										|
+| `invalid_argument`	| LE: inappropriate argument													|
+| `length_error`		| LE: attempt to create an object larger thatn the maximum size for that type	|
+| `out_of_range`		| LE: used a value ouside the valid range										|
 
 
 
