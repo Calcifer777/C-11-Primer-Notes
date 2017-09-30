@@ -3,7 +3,7 @@
 ## Simple and compound statements
 
 **Simple statements**
-* *Expression statement*: expression followed by a `;`. The expression is evaluated and the result discarded.
+* *Expression statement*: expression followed by a `;`. The expression is evaluated and the result discarded. 
 * *Null statement*: useful where the language requires a statement but the program’s logic does not.
 
 **Compound Statements (blocks)**: a sequence of statements surrounded by a pair of curly braces Variables defined in the control structure are visible only within that statement. and are out of scope after the statement ends.
