@@ -101,7 +101,49 @@ It is used to let a function have an unknown number of parameters of the same ty
 | ---- | ------ |
 | initializer_list<T> lst;                | Default initialization. Creates an empty list of type T elements |
 | initializer_list<T> lst{a, b, ...};     | lst has many elements as there are initializers. Elements are copies of the corresponding initializers. Elements are const | 
+| lst2 = lst1; lst2(lst1);  | When a list is initialized from another, the two of them share the same elements |
+| lst.size(); | Returns the number of elements in the list |
+| lst.begin(); lst.end() | Pointers to the first and one after the last elements of  the  list |
+  
+Example:
+```c++
+int sum(initializer_list<int> &list) {
+    int sum = 0;
+    for (auto e : list)
+        sum += e;
+    return  sum;
+}
+
+int main()
+{
+    initializer_list<int> lst = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    cout<<sum(lst);
+    return 0;
+}
+```
+
+**Ellipsis Parameters**
+
+Allow a C++ program to interface with a C program. An ellipsis parameter may appear only as the last element in a parameter list and may take either of two forms:
+```c++
+void foo(parm_list, ...);
+void foo(...);
+```
+No type checking is done for the arguments that correspond to the ellipsis parameter.
+
 ## Return types and the `return` Statement
+
+### Functions that return no values
+
+Use:
+```c++
+return;
+```
+
+### Functions that return a value
+
+
+
 
 ## Overloaded Functions
 
