@@ -45,12 +45,11 @@ If the argument of a function is a pointer to a variable and the value associate
 
 Passing arguments by reference can be used to make a function return more than one value. The variables containing additional values can be passed as references to the function.
 
-Using a reference instead of a reference to const limits the type of arguments that can be used with the function. We cannot pass a const object, or a literal, or an object that requires conversion to a plain reference parameter.
+**Using a reference instead of a reference to const limits the type of arguments that can be used with the function. We cannot pass a const object, or a literal, or an object that requires conversion to a plain reference parameter.**
 
 ##### Passing arrays
 
-If we pass an array to print, that argument is automatically converted to a pointer
-to the first element in the array; the size of the array is irrelevant.
+If we pass an array to print, that argument is automatically converted to a pointer to the first element in the array; the size of the array is irrelevant.
 
 Options to use for cycling through array elements
 - Using a Marker to Specify the Extent of an Array: good for strings; bad for int[]
@@ -92,6 +91,16 @@ void print(int (&arr)[10])
 **Passing a Multidimensional Array**: As with any array, a multidimensional array is passed as a pointer to its first
 element. Because we are dealing with an array of arrays, that element is an array, so the pointer is a pointer to an array. The size of the second (and any subsequent) dimension is part of the element type and must be specified
 
+#### Functions with varying parameters
+
+**Initializer_list**
+
+It is used to let a function have an unknown number of parameters of the same type. Thus an initializer_list object represents an array of elements of the same type, and it is contained in the initializer_list  header.
+
+| Code | Result |
+| ---- | ------ |
+| initializer_list<T> lst;                | Default initialization. Creates an empty list of type T elements |
+| initializer_list<T> lst{a, b, ...};     | lst has many elements as there are initializers. Elements are copies of the corresponding initializers. Elements are const | 
 ## Return types and the `return` Statement
 
 ## Overloaded Functions
