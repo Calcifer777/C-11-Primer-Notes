@@ -2,8 +2,6 @@
 
 ## Basics
 
-A function can not return an array type or a function type, but it can return a pointer to array or a pointer to a function.
-
 **Local variables** Variables defined inside a block.
 
 **Automatic object**: an object that exists only while a block is executing. Automatic objects corresponding to local
@@ -141,6 +139,67 @@ return;
 ```
 
 ### Functions that return a value
+
+A function can not return an array type or a function type, but it can return a pointer to array or a pointer to a function.
+
+Example:
+```c++
+int sum(const int a, const int b);
+```
+
+**List initializing the return value**
+
+Example:
+vector<int> createVec() {
+    return {1, 2, 3};
+}
+
+**Recursive functions**
+
+Example:
+```c++
+int factorial(int n) {
+    if (n<0)
+        return -1;
+    else if (n==0 || n==1)
+        return 1;
+    else
+        return n * factorial(n-1);
+}
+```
+
+#### Returning references
+Example:
+```c++
+const char& firstChar(const string &str) {
+    return str[0];
+}
+```
+
+**Never return a reference to a local object!**. E.g.:
+```c++
+const string &wrong() {
+    string retrn;
+    if (retrn.empty())
+      return retrn; // Given how the function is defined, this returns a reference to a local variable;
+                    // but the local variable is discarded after the function call is processed.
+                    // So the function returns a reference to an object no longer in memory
+    else
+      return "Wrong"; // Again, this returns a local temporary string;
+}
+```
+
+#### Returning a Pointer to an array
+
+
+
+
+
+
+
+
+
+
 
 
 
