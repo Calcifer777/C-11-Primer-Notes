@@ -306,16 +306,13 @@ Names that can be used in debugging:
 
 ## Pointers to Functions
 
+```c++
+// compares lengths of two strings
+bool lengthCompare(const string &, const string &);
+// pf points to a function returning bool that takes two const string references
+bool (*pf)(const string &, const string &);
+pf = lengthCompare; // pf now points to the function named lengthCompare
+pf = &lengthCompare; // equivalent assignment: address-of operator is optional
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
+[Uses of function pointers](https://stackoverflow.com/questions/2592137/what-is-the-point-of-function-pointers)
