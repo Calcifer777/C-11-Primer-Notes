@@ -102,8 +102,7 @@ It is used to let a function have an unknown number of parameters of the same ty
 | lst2 = lst1; lst2(lst1);  | When a list is initialized from another, the two of them share the same elements |
 | lst.size(); | Returns the number of elements in the list |
 | lst.begin(); lst.end() | Pointers to the first and one after the last elements of  the  list |
-  
-Example:
+
 ```c++
 int sum(initializer_list<int> &list) {
     int sum = 0;
@@ -133,7 +132,6 @@ No type checking is done for the arguments that correspond to the ellipsis param
 
 ### Functions that return no values
 
-Use:
 ```c++
 return;
 ```
@@ -142,7 +140,6 @@ return;
 
 A function can not return an array type or a function type, but it can return a pointer to array or a pointer to a function.
 
-Example:
 ```c++
 int sum(const int a, const int b);
 ```
@@ -155,8 +152,6 @@ vector<int> createVec() {
 }
 
 **Recursive functions**
-
-Example:
 ```c++
 int factorial(int n) {
     if (n<0)
@@ -169,7 +164,6 @@ int factorial(int n) {
 ```
 
 #### Returning references
-Example:
 ```c++
 const char& firstChar(const string &str) {
     return str[0];
@@ -191,7 +185,57 @@ const string &wrong() {
 
 #### Returning a Pointer to an array
 
+- Using type aliases
+```c++
+using myArray = int[10] // Or equivalently: typedef int myArray[10];
+myArray* myFunction(paramList);
+```
 
+- Not using type aliases
+```c++
+int (*function(paramlist))[10];
+```
+
+```c++
+// Returns a dynamic memory 2D array
+int** createArray(const size_t length, const size_t width) {
+    int** arr = new int*[length];	// allows to create dynamic memory objects, see chapter 12
+    for (int r = 0; r != length; ++r) {
+        arr[r] = new int[width];
+    }
+    for (int r = 0; r != length; ++r) {
+        for (int c = 0; c != width; ++c) {
+            arr[r][c] = r*c;	// Each element is the product of the row and the column index
+        }
+    }
+    return arr;
+}
+
+int main() {
+    const size_t l = 10;
+    const size_t w = 10;
+    int **arr = createArray(l, w);
+    for (int r = 0; r != l; ++r) {		// Prints the array
+        for (int c = 0; c != w; ++c) {
+            cout << setw(4) << arr[r][c];
+        }
+        cout << endl;
+    }
+}
+```
+- Using a trailing return type: To signal that the return follows the parameter list, we use auto where the return type ordinarily appears
+```c++
+auto myFunction(paramList) -> int(*)[10];
+```
+
+- Using decltype: when the arrays that the function can return are already known
+```c++
+int even[5] = {2, 4, 6, 8, 10};
+int odd[5] = {1, 3, 5, 7, 9};
+decltype(odd)* arrayPointer(bool flag) {
+	return (flag)? &odd : &even;
+}
+```
 
 
 
