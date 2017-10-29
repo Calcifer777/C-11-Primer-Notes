@@ -237,21 +237,59 @@ decltype(odd)* arrayPointer(bool flag) {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
 ## Overloaded Functions
+
+Overloaded functions must differ in the number or the type(s) of their parameters. 
+
+A parameter that has a top-level const is indistinguishable from one without a top-level const; therefore:
+```c++
+int sum(int a, int b); // EQUIVAlENT TO
+int sum(const int a, const int b);
+```
+On the other hand, we can overload based on whether the parameter is a reference (or pointer) to the const or nonconst version of a given type; such consts are low-level.
+```c++
+int sum(int &a, int &b); // DIFFERENT FROM
+int sum(const int &a, const int &b);
+```
+It is an error for two functions to differ only in terms of their return types.
+
+```c++
+void print(const char *cp);
+void print(const int *beg, const int *end);
+void print(const int ia[], size_t size);
+```
+
+```const_cast<Type &>(objectName)```: may be used to cast away (remove) constness or volatility.
 
 ## Features for Specialized Uses
 
+### Default Arguments
+
+If we want to use the default argument, we omit that argument when we call the function. The default arguments are used for the trailing (right-most) arguments of a call.
+```c++
+typedef string::size_type sz; // typedef see § 2.5.1 (p. 67)
+string screen(sz ht = 24, sz wid = 80, char backgrnd = ' ');
+
+int main {
+	string str1 = screen(15, 10); // Uses ' ' as background
+	string str2 = screen(15, '%'); // Cannot default the parameter wid while providing backgrnd
+				       // The compiler does not yield an error, as char is impicitly converted to size_t
+}
+```
+
+Although it is normal practice to declare a function once inside a header, it is legal to redeclare a function multiple times. However, each parameter can have its default specified only once in a given scope. Thus, any subsequent declaration can add a default only for a parameter that has not previously had a default specified.
+
+### Inline and constexpr functions
+
+**Inline Functions**: allow to avoid function call overhead. It is used to optimize small functions.
+```c++
+inline const string &shorterString(const string &s1, const string &s2) { 
+	return s1.size() <= s2.size() ? s1 : s2;
+}
+```
+
+**constexpr Functions**: functions that can be used in a constant expression. Such functions must be simple enough that the compiler
+can evaluate them at compile time. We can use constexpr functions in the initializer of a constexpr variable.
 ## Function Matching
 
 ## Pointers to Functions
