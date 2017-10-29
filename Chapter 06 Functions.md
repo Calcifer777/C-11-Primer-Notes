@@ -289,6 +289,33 @@ inline const string &shorterString(const string &s1, const string &s2) {
 
 **constexpr Functions**: functions that can be used in a constant expression. Such functions must be simple enough that the compiler
 can evaluate them at compile time. We can use constexpr functions in the initializer of a constexpr variable.
-## Function Matching
+
+**Inline and constexpr functions normally are defined in headers**
+
+### Aids for debugging
+
+**assert**
+
+`assert` is a preprocessor contained in the library `<cassert>`, takes single expression and uses it as condition.  If the condition is false,  terminates the program. The behavior of assert depends on the status of a preprocessor variable named NDEBUG. If NDEBUG is defined, assert does nothing. By default, NDEBUG is not defined, so, by default, assert performs a run-time check. Use `#define NDEBUG` to define it. 
+
+Names that can be used in debugging:
+- FILE
+- LINE
+- TIME
+- DATE
 
 ## Pointers to Functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
