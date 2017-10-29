@@ -15,8 +15,7 @@ variables are initialized if their definition contains an initializer. Otherwise
 
 ### Passing Arguments by Value
 
-Passing an argument by value works exactly the same way; nothing the function
-does to the parameter can affect the argument.
+Passing an argument by value works exactly the same way; nothing the function does to the parameter can affect the argument.
 
 **Pointer parameters**
 If the argument of a function is a pointer to a variable and the value associated to that variable is changed through that pointer within the function, the value will be changed for the outside variable too.
@@ -86,14 +85,13 @@ void print(int (&arr)[10])
 }
 ```
 
-**Passing a Multidimensional Array**: As with any array, a multidimensional array is passed as a pointer to its first
-element. Because we are dealing with an array of arrays, that element is an array, so the pointer is a pointer to an array. The size of the second (and any subsequent) dimension is part of the element type and must be specified
+**Passing a Multidimensional Array**: As with any array, a multidimensional array is passed as a pointer to its first element. Because we are dealing with an array of arrays, that element is an array, so the pointer is a pointer to an array. The size of the second (and any subsequent) dimension is part of the element type and must be specified
 
 #### Functions with varying parameters
 
 **Initializer_list**
 
-It is used to let a function have an unknown number of parameters of the same type. Thus an initializer_list object represents an array of elements of the same type, and it is contained in the initializer_list  header.
+It is used to let a function have an unknown number of parameters of the same type. Thus an initializer_list object represents an array of elements of the same type, and it is contained in the initializer_list header.
 
 | Code | Result |
 | ---- | ------ |
@@ -123,7 +121,7 @@ int main()
 
 Allow a C++ program to interface with a C program. An ellipsis parameter may appear only as the last element in a parameter list and may take either of two forms:
 ```c++
-void foo(parm_list, ...);
+void foo(parm_list, ...); // or
 void foo(...);
 ```
 No type checking is done for the arguments that correspond to the ellipsis parameter.
@@ -146,10 +144,11 @@ int sum(const int a, const int b);
 
 **List initializing the return value**
 
-Example:
+```c++
 vector<int> createVec() {
     return {1, 2, 3};
 }
+```
 
 **Recursive functions**
 ```c++
