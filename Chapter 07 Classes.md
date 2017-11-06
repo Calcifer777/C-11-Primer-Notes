@@ -52,3 +52,8 @@ When the member function returns the `this` object, the return type must be refe
 **Synthesized default constructor**: when no constructor is specified, an object of the class is default initialized. For most classes, this synthesized constructor initializes each data member of the class as follows:
 - If there is an in-class initializer, use it to initialize the member.
 - Otherwise, default-initialize the member.
+```c++
+Student() = default // No ';' at the end of line!
+```
+
+**Constructor Initializer List**: specifies initial values for one or more data members of the object being created.
