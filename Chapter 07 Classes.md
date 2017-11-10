@@ -74,3 +74,13 @@ Members defined after a `public` specifier are accessible to all parts of the pr
 If we use the `struct` keyword, the members defined before the first access specifier are public; if we use `class`, then the members are private.
 
 A class can allow another class or function to access its nonpublic members by making that class or function a friend. A class makes a function its friend by including a declaration for that function preceded by the keyword `friend:` inside a class definition. To make a friend visible to users of the class, we usually declare each friend (outside the class) in the same header as the class itself.
+
+## Additional Class features
+
+In addition to defining data and function members, a class can define its own local names for types, either with `typedef` or with `using`.
+
+Classes often have small functions that can benefit from being inlined.  As we’ve seen, member functions defined inside the class are automatically `inline`.
+
+As with nonmember functions, member functions may be overloaded so long as the functions differ by the number and/or types of parameters.
+
+**Mutable data members**: Data member that is never const, even when it is a member of a const object. A mutable member can be changed inside a const function.
