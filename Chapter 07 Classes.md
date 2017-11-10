@@ -4,24 +4,31 @@
 ## Basics
 
 ```c++
-class Student {
-  
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student { 
   // Members
   string name;
-  string address;
   int age;
-  
-  // Constructors
+  string address;  
   public: // Sets everything after this declaration as public; private does the same
+  // Constructors
   Student() = default;
   Student(const string &s1, const int &i, const string &s2) :
-    name(s1), surname(i), address(s2) {}  // No semicolumn after this constructor!!!
-  
+    name(s1), age(i), address(s2) {}  // No semicolumn after this constructor!!! 
   // Methods
-  inline string const getName() {return name;}
-  inline string const getAge() {return age;}
-  void setName(string newName) {name = newName;}
+  string const getName(); // This member is only declared here; it is defined outside the class
+  int const getAge() {return age;}
+  void setName(const string newName) {name = newName;}
 };
+
+string const Student::getName(){return name;}  //Member definition
+
+void printName(Student s) {
+    cout << s.getName();
+}
 ```
 
 ## Defining Abstract Data Types
@@ -43,7 +50,7 @@ string const getName() {return name;}
 string Student::getName(const Student *const this) {return this->name;}
 ```
 
-When defining a member function outside the class body, the member’s definition must match its declaration. The name of a member defined outside the class must include the name of the class of which it is a member.
+When defining a member function outside the class body, the member’s definition must match its declaration. The name of a member defined outside the class must include the name of the class of which it is a member (E.g. `getname()`)
 
 When the member function returns the `this` object, the return type must be reference (e.g. : Student& myFunction) and the function must return the current object through the dereference operator (i.e: `return *this;`)
 
@@ -57,3 +64,13 @@ Student() = default // No ';' at the end of line!
 ```
 
 **Constructor Initializer List**: specifies initial values for one or more data members of the object being created.
+
+Best practice: Constructors should not override in-class initializers except to use a different initial value. If you can’t use in-class initializers, each constructor should explicitly initialize every member of built-in type.
+
+## Access Control and Encapsulation
+
+Members defined after a `public` specifier are accessible to all parts of the program. The public members define the interface to the class. Members defined after a `private` specifier are accessible to the member functions of the class but are not accessible to code that uses.
+
+If we use the `struct` keyword, the members defined before the first access specifier are public; if we use `class`, then the members are private.
+
+A class can allow another class or function to access its nonpublic members by making that class or function a friend. A class makes a function its friend by including a declaration for that function preceded by the keyword `friend:` inside a class definition. To make a friend visible to users of the class, we usually declare each friend (outside the class) in the same header as the class itself.
