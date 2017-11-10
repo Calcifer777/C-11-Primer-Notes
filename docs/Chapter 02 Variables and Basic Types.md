@@ -1,3 +1,8 @@
+
+---
+title: Document Center
+---
+
 # Chapter 2 - Variables and Basic Types
 
 To return the type of a variable/object:
