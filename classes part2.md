@@ -1,4 +1,9 @@
+To be inserted at the BEGINNING of the paragraph:
+When a member is omitted from the constructor initializer list, it is implicitly initialized using the same process as is used by the synthesized default constructor. In this case, those members are initialized by the in-class initializers. 
 
+
+---------------------------
+***************************
 To be inserted in the constructors paragraph:
 
 With respect to the  default initializer, the new parts in these definitions are the colon and the code between it and the
