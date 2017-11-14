@@ -119,6 +119,11 @@ struct Data {
 
 ### Literal classes
 
+An aggregate class whose data members are all of literal type is a literal class. A nonaggregate class, that meets the following restrictions, is also a literal class:
+• The data members all must have literal type.
+• The class must have at least one constexpr constructor.
+• If a data member has an in-class initializer, the initializer for a member of built-in type must be a constant expression, or if the member has class type, the initializer must use the member’s own constexpr constructor.
+• The class must use default definition for its destructor, which is the member
+that destroys objects of the class type
 
-
-
+Constexpr constructors [https://stackoverflow.com/questions/14116003/difference-between-constexpr-and-const](Difference between const and constexpr)
