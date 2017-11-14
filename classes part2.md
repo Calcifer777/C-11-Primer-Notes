@@ -1,9 +1,11 @@
 To be inserted at the BEGINNING of the paragraph:
-When a member is omitted from the constructor initializer list, it is implicitly initialized using the same process as is used by the synthesized default constructor. In this case, those members are initialized by the in-class initializers. 
 
+Classes are an expanded concept of data structures: like data structures, they can contain data members, but they can also contain functions as members.
+
+An object is an instantiation of a class. In terms of variables, a class would be the type, and an object would be the variable.
 
 ---------------------------
-***************************
+
 To be inserted in the constructors paragraph:
 
 With respect to the  default initializer, the new parts in these definitions are the colon and the code between it and the
@@ -13,7 +15,8 @@ When a member is omitted from the constructor initializer list, it is implicitly
 using the same process as is used by the synthesized default constructor. In this
 case, those members are initialized by the in-class initializers.
 
-==========================
+***************************
+***************************
 
 ## Class Scope
 
@@ -27,7 +30,19 @@ Ordinarily, an inner scope can redefine a name from an outer scope even if that 
 
 ## Constructors revisited
 
+If we do not explicitly initialize a member in the constructor initializer list, that member is default initialized before the
+constructor body starts executing
+
 Members that are const or references must be initialized. Similarly, members that are of a class type that does not define a default constructor also must be initialized. 
+
+*Use Constructor Initializers
+In many classes, the distinction between initialization and assignment is strictly a matter of low-level efficiency: A data member is initialized and then assigned when it could have been initialized directly. More important than the efficiency issue is the fact that some data members must be initialized. By routinely using constructor initializers, you can avoid being surprised by compile-time errors when you have a class with a member that requires a constructor initializer.*
+
+The order of initialization often doesn’t matter. However, if one member is initialized in terms of another, then the order in which members are initialized is crucially important.
+
+->*It is a good idea to write constructor initializers in the same order as
+the members are declared. Moreover, when possible, avoid using
+members to initialize other members.*
 
 
 
