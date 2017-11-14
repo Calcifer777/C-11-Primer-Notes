@@ -92,6 +92,32 @@ Here we call the Sales_data combine member function with a string argument. This
 
 *Try it with constructors that take a cin object to use class objects that are discarded after a function call!*
 
+It is possible to prevent the use of a constructor in a context that requires an implicit conversion by declaring the constructor as `explicit`. The explicit keyword is meaningful only on constructors that can be called with .a single argument. The explicit keyword is used only on the constructor declaration inside the class. It is not repeated on a definition made outside the class body. 
+
+`explicit ` Constructors Can Be Used Only for Direct Initialization
+One context in which implicit conversions happen is when we use the copy form of
+initialization (with an =) (§ 3.2.1, p. 84). We cannot use an explicit constructor
+with this form of initialization; we must use direct initialization
+
+Although the compiler will not use an explicit constructor for an implicit conversion, we can use such constructors explicitly to force a conversion:
+```c++
+// ok: the argument is an explicitly constructed Sales_data object
+item.combine(Sales_data(null_book));
+// ok: static_cast can use an explicit constructor
+item.combine(**static_cast<Sales_data>**(cin));
+```
+
+### Aggregate classes
+
+**Aggregate class**: class with only public data members that has no in-class initializers or constructors. Members of an aggregate can be initialized by a brace-enclosed list of initializers.
+```c++
+struct Data {
+  int ival;
+  string s;
+};
+```
+
+### Literal classes
 
 
 
