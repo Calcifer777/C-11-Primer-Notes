@@ -15,6 +15,14 @@ When a member is omitted from the constructor initializer list, it is implicitly
 using the same process as is used by the synthesized default constructor. In this
 case, those members are initialized by the in-class initializers.
 
+
+*****************
+
+**How opetional arguments are handled**
+
+A constructor that supplies default arguments for all its parameters
+also defines the default constructor.
+
 ***************************
 ***************************
 
@@ -43,6 +51,46 @@ The order of initialization often doesn’t matter. However, if one member is in
 ->*It is a good idea to write constructor initializers in the same order as
 the members are declared. Moreover, when possible, avoid using
 members to initialize other members.*
+
+### Delegating constructors
+
+A **delegating constructor** uses another constructor from its own class to perform its initialization. It is said to “delegate” some (or all) of its work to this other constructor.
+
+```c++
+class Sales_data {
+  public:
+  // nondelegating constructor initializes members from corresponding arguments
+  Sales_data(std::string s, unsigned cnt, double price):
+    bookNo(s), units_sold(cnt), revenue(cnt*price) { }
+  // remaining constructors all delegate to another constructor
+  Sales_data(): Sales_data("", 0, 0) {}
+  Sales_data(std::string s): Sales_data(s, 0,0) {}
+  Sales_data(std::istream &is): Sales_data()
+  { read(is, *this); }
+  // other members as before
+};
+```
+
+When a constructor delegates to another constructor, the constructor initializer list and function body of the delegated-to constructor are both executed. In Sales_data, the function bodies of the delegated-to constructors happen to be empty. Had the function bodies contained code, that code would be run before control returned to the function body of the delegating constructor.
+
+### The role of the default constructor
+
+`Sales_data obj();` -> although we intended to declare a default-initialized object, `obj` actually declares a function taking no parameters and returning an object of type `Sales_data`. The correct way to define an object that uses the default constructor for  initialization is to leave off the trailing, empty parentheses: `Sales_data obj;`.
+
+### Implicit class-type conversions
+
+**Converting constructors**: A nonexplicit constructor that can be called with a single argument. Such constructors implicitly convert from the argument’s type to the class type.
+
+```c++
+string null_book = "9-999-99999-9";
+// constructs a temporary Sales_data object
+// with units_sold and revenue equal to 0 and bookNo equal to null_book
+item.combine(null_book);
+```
+
+Here we call the Sales_data combine member function with a string argument. This call is perfectly legal; the compiler automatically creates a Sales_data object from the given string. That newly generated (temporary) Sales_data is passed to combine. Because combine’s parameter is a reference to const, we can pass a temporary to that parameter.
+
+*Try it with constructors that take a cin object to use class objects that are discarded after a function call!*
 
 
 
