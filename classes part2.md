@@ -128,3 +128,10 @@ that destroys objects of the class type
 
 Constexpr constructors 
 [Difference between const and constexpr](https://stackoverflow.com/questions/14116003/difference-between-constexpr-and-const)
+
+## Static class Members
+
+The static members of a class exist outside any object; these members are associated with the class, rather than with individual objects of the class type. Objects do not contain data associated with static data members.
+
+Because static data members are not part of individual objects of the class type, they are not defined when we create objects of the class. As a result, they are not initialized by the class’ constructors. Moreover, in general, we may not initialize a static member inside the class. Instead, we must define and initialize each static data member outside the class body.
+
