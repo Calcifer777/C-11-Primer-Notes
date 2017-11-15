@@ -1,6 +1,10 @@
 
 # Classes
 
+Classes are an expanded concept of data structures: like data structures, they can contain data members, but they can also contain functions as members.
+
+An object is an instantiation of a class. In terms of variables, a class would be the type, and an object would be the variable.
+
 ## Basics
 
 ```c++
