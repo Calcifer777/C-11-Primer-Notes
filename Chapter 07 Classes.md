@@ -75,6 +75,14 @@ Student() = default // No ';' at the end of line!
 
 Best practice: Constructors should not override in-class initializers except to use a different initial value. If you can’t use in-class initializers, each constructor should explicitly initialize every member of built-in type.
 
+```c++
+Student(const string &s1, const int &i, const string &s2) :   name(s1), age(i), address(s2) {}
+```
+
+With respect to the default initializer, the new parts in these definitions are the colon and the code between it and the curly braces that define the (empty) function bodies. This new part is a constructor initializer list, which specifies initial values for one or more data members of the object being created. The constructor initializer is a list of member names, each of which is followed by that member’s initial value in parentheses (or inside curly braces). Multiple member initializations are separated by commas.
+
+When a member is omitted from the constructor initializer list, it is implicitly initialized using the same process as is used by the synthesized default constructor. In this case, those members are initialized by the in-class initializers.
+
 ## Access Control and Encapsulation
 
 Members defined after a `public` specifier are accessible to all parts of the program. The public members define the interface to the class. Members defined after a `private` specifier are accessible to the member functions of the class but are not accessible to code that uses.
