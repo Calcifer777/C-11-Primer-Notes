@@ -21,7 +21,11 @@ class Student {
   // Methods
   string const getName(); // This member is only declared here; it is defined outside the class
   int const getAge() {return age;}
-  void setName(const string newName) {name = newName;}
+
+  Student & setName(string str) {
+      name = str;
+      return *this;
+  }
 };
 
 string const Student::getName(){return name;}  //Member definition
@@ -73,14 +77,43 @@ Members defined after a `public` specifier are accessible to all parts of the pr
 
 If we use the `struct` keyword, the members defined before the first access specifier are public; if we use `class`, then the members are private.
 
-A class can allow another class or function to access its nonpublic members by making that class or function a friend. A class makes a function its friend by including a declaration for that function preceded by the keyword `friend:` inside a class definition. To make a friend visible to users of the class, we usually declare each friend (outside the class) in the same header as the class itself.
+### Friendship
+
+A class can allow another class or function to access its nonpublic members by making that class or function a `friend`. A class makes a function its friend by including a declaration for that function preceded by the keyword `friend`: inside a class definition. To make a friend visible to users of the class, we usually declare each friend (outside the class) in the same header as the class itself.
+
+A class can also make another class its friend or it can declare specific member functions of another (previously defined) class as friends. In addition, a friend function can be defined inside the class body.
+
+**Friendship between classes**
+
+The member functions of a friend class can access all the members, including the nonpublic members, of the class granting friendship. (E.g. `friend class WindowManager`)
+
+Rather than making the entire `WindowManager` class a friend, `Screen` can instead specify that only the clear member is allowed access.
 
 ## Additional Class features
 
 In addition to defining data and function members, a class can define its own local names for types, either with `typedef` or with `using`.
 
-Classes often have small functions that can benefit from being inlined.  As we’ve seen, member functions defined inside the class are automatically `inline`.
+Classes often have small functions that can benefit from being inlined. Member functions defined inside the class are automatically `inline`.
 
 As with nonmember functions, member functions may be overloaded so long as the functions differ by the number and/or types of parameters.
 
 **Mutable data members**: Data member that is never const, even when it is a member of a const object. A mutable member can be changed inside a const function.
+
+### Returning this
+
+Example
+```c++
+Book & setYear(const &int i) {
+  year = i;
+  return *this;
+}
+```
+
+When a member returns a reference to the calling object, it is sometimes useful to define another version of that member that handles const objects.
+
+When overloading a (member) function, use private utility functions for common code.
+
+### Class declarations
+
+It is possible to declare a class without defining (e.g. `class Screen;`). This is referred to as **forward declaration**. After a declaration and before a definition is seen, the type `Screen` is an **incomplete type**.
+
