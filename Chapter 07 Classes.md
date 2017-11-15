@@ -83,6 +83,8 @@ With respect to the default initializer, the new parts in these definitions are 
 
 When a member is omitted from the constructor initializer list, it is implicitly initialized using the same process as is used by the synthesized default constructor. In this case, those members are initialized by the in-class initializers.
 
+A constructor that supplies default arguments for all its parameters also defines the default constructor.
+
 ## Access Control and Encapsulation
 
 Members defined after a `public` specifier are accessible to all parts of the program. The public members define the interface to the class. Members defined after a `private` specifier are accessible to the member functions of the class but are not accessible to code that uses.
