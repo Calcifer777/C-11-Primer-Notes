@@ -28,14 +28,14 @@ int main()
 
 ```
 
-## `get`
+## [`get`](http://www.cplusplus.com/reference/istream/istream/get/) 
 
 | Input Type | Command | Result |
 | ---------- | ------- | ------ |
-| single character (1)	| int get(); | |
-| single character (1)	| istream& get (char& c); | |
-| c-string (2)	        | istream& get (char* s, streamsize n); | |
-| c-string (2)	        | istream& get (char* s, streamsize n, char delim); | |
+| single character (1)	| int get(); | Extracts a single character from the stream and returns it as `int`|
+| single character (1)	| istream& get (char& c); |  Extracts a single character from the stream and sets it as the value of the function argument |
+| c-string (2)	        | istream& get (char* s, streamsize n); | Extracts characters from the stream and stores them in s as a c-string, until (n-1) characters have been extracted |
+| c-string (2)	        | istream& get (char* s, streamsize n, char delim); | Extracts characters from the stream and stores them in s as a c-string, until  the delimiting character is encountered: the delimiting character being either the newline character ('\n') or delim (if this argument is specified).|
 | stream buffer (3)	    | istream& get (streambuf& sb); | |
 | stream buffer (3)	    | istream& get (streambuf& sb, char delim); | |
 
