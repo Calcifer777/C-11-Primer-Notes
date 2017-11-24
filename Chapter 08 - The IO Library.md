@@ -28,7 +28,7 @@ int main()
 
 ```
 
-## [`get`](http://www.cplusplus.com/reference/istream/istream/get/) 
+## [`istream::get`](http://www.cplusplus.com/reference/istream/istream/get/) 
 
 | Input Type | Command | Result |
 | ---------- | ------- | ------ |
@@ -39,11 +39,20 @@ int main()
 | stream buffer (3)	    | `istream& get (streambuf& sb);` | Extracts characters from the stream and inserts them into the output sequence controlled by the stream buffer object sb, stopping as soon as such an insertion fails |
 | stream buffer (3)	    | `istream& get` (streambuf& sb, char delim); | Extracts characters from the stream and inserts them into the output sequence controlled by the stream buffer object sb, stopping as soon as the delimiting character is encountered in the input sequence (the delimiting character being either the newline character, '\n', or delim, if this argument is specified). |
 
-
-## Clear
+## [`ios::clear`](http://en.cppreference.com/w/cpp/io/basic_ios/clear)
 **`cin.clear()`**: helps in clearing the error flags which are set when std::cin fails to interpret the input.
 
-**`cin.ignore()`**, on the other hand helps in removing the input contents that could caused the read failure. By default only 
+The states of the input buffer are (a combination of) 
+| Constant | Explanation |
+| -------- | ----------- |
+|goodbit	 | no error |
+|badbit	   | irrecoverable stream error |
+|failbit   |input/output operation failed (formatting or extraction error) |
+|eofbit	   | associated input sequence has reached end-of-file |
+
+## [`istream::ignore`](http://www.cplusplus.com/reference/istream/istream/ignore/)
+
+**`cin.ignore()`** helps in removing the input contents that could caused the read failure. By default only 
 clears one character (the first one). 
 `cin.ignore(1000)` would mean the next 1000 characters in the read buffer shall be ignored. 
 `cin.ignore(1000,'\n')` would mean either next 1000 characters or the characters until '\n' shall be ignored, whichever comes first.
