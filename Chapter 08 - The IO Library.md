@@ -1,4 +1,4 @@
-# Recap of the 'cin' use
+# Recap of 'cin'
 
 ```c++
 #include <iostream>
@@ -24,6 +24,15 @@ int main()
   cout << "Insert sentence: ";
   getline (cin, sentence);
   cout << "Sentence: " << sentence << endl;
+  
+  // Validating input
+  int a;
+  cout << "Enter an integer: ";
+  while (!(cin >> a)) {
+    cin.ignore();
+    while (cin.get() != '\n') continue
+    cout << "Invalid input. Enter an integer: ";
+  }
 }
 
 ```
@@ -56,3 +65,38 @@ The states of the input buffer are (a combination of)
 clears one character (the first one). 
 `cin.ignore(1000)` would mean the next 1000 characters in the read buffer shall be ignored. 
 `cin.ignore(1000,'\n')` would mean either next 1000 characters or the characters until '\n' shall be ignored, whichever comes first.
+
+# The IO classes
+
+**IO Library Types and Headers**
+
+| Header | Type |
+| ------ | ---- |
+| `iostream` | `istream`, `wistream` reads from a stream |
+| `iostream` | `ostream`, `wostream` writes to a stream |
+| `iostream` | `iostream`, `woistream` reads and writes a stream |
+| `fstream` | `ifstream`, `wifstream` reads from a stream |
+| `fstream` | `ofstream`, `wofstream` writes to a stream |
+| `fstream` | `fstream`, `wfstream` reads and writes a stream |
+| `sstream` | `istringstream`, `wistringstream` reads from a stream |
+| `sstream` | `ostringstream`, `wostringstream` writes to a stream |
+| `sstream` | `stringstream`, `wstringstream` reads and writes a stream |
+
+**IO Library Condition State**
+
+| State | Description |
+| ----- | ----------- |
+| `strm::iostate` | iostate is a machine-dependent integral type that represents the condition of a stream |
+| `strm::badbit` | Indicates that the stream is corrupted |
+| `strm::failbit` | Indicates that an IO operation failed |
+| `strm::eofbit` | Indicates that a stream hit end-of-file |
+| `strm::goodbit` | Indicates that a stream is not in an error state. Guaranteed to be 0 |
+| `s.eof()` | true if eobit in the stream s is set |
+| `s.fail()` | true if failbit in the stream s is set |
+| `s.bad()` | true if badbit in the stream s is set |
+| `s.clear()` | Resets all condition vales in the stream s to valid state |
+| `s.cleaf(flags)` | Reset the condition of `s` to flags. Returns void |  
+| `s.setstate(flags)` | Adds specified conditions to `s` |
+| `s.rdstate()` | Returns current condition of `s` as a `strm::iostate` value |
+
+
