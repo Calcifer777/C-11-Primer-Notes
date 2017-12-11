@@ -133,14 +133,41 @@ If stream is a null pointer, all such streams are flushed.
 
 ## `fgetc`
 
+Returns the character currently pointed by the internal file position indicator of the specified stream. The internal file position indicator is then advanced to the next character.
+
+If the stream is at the end-of-file when called, the function returns EOF and sets the end-of-file indicator for the stream (feof).
+
+If a read error occurs, the function returns EOF and sets the error indicator for the stream (ferror).
+
 ## `fputc`
+
+Writes a character to the stream and advances the position indicator.
+
+The character is written at the position indicated by the internal position indicator of the stream, which is then automatically advanced by one.
 
 ## `fgets`
 
+Reads characters from stream and stores them as a C string into str until (num-1) characters have been read or either a newline or the end-of-file is reached, whichever happens first.
+
+A newline character makes fgets stop reading, but it is considered a valid character by the function and included in the string copied to str.
+
 ## `fputs`
+
+Writes the C string pointed by str to the stream.
+
+The function begins copying from the address specified (str) until it reaches the terminating null character ('\0'). This terminating null-character is not copied to the stream.
 
 ## `fread`
 
+Reads an array of count elements, each one with a size of size bytes, from the stream and stores them in the block of memory specified by ptr.
+
+The position indicator of the stream is advanced by the total amount of bytes read.
+
 ## `fwrite`
 
+Writes an array of count elements, each one with a size of size bytes, from the block of memory pointed by ptr to the current position in the stream.
+
+The position indicator of the stream is advanced by the total number of bytes written.
+
+Internally, the function interprets the block pointed by ptr as if it was an array of (size * count) elements of type unsigned char, and writes them sequentially to stream as if fputc was called for each byte
 
