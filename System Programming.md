@@ -1,4 +1,3 @@
-# Argomenti
 
 - Gestione accessi ai file
   - Aprire un file
@@ -14,15 +13,15 @@
   - Terminare processi
   - Sostituire il codice di un processo in esecuzion
   
-# File
+# Files and Operations on Files
 
-I file sono identificati da:
-- Nome
+Files attributes:
+- Name
 - Directory
-- Lunghezza (# byte)
-- Data/ora creazione
-- Data/ora ultima modifica
-- Diritti di accesso (r, w, x)
+- Length (# byte)
+- Date/hour created
+- Date/hour last modified
+- Access profiles (r, w, x)
 
 ## Functions
 
@@ -37,10 +36,10 @@ I file sono identificati da:
 | [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` |
 | [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` |
 | [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` |
-| [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `int fseek ( FILE * stream, long int offset, int origin );` |
+| [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` |
+| [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` |
 
-
-**`fopen`**
+### `fopen`
 
 | Mode | Result |
 | ---- | ------ |
@@ -57,7 +56,7 @@ Use `"x"` to force the function to fail if the file already exist, instead of ov
 
 Returns NULL if the file does not exist.
 
-**`fclose`**
+### `fclose`
 
 Closes the file associated with the stream and disassociates it. Returns `0` if the stream is successfully closed.
 
@@ -65,7 +64,7 @@ All internal buffers associated with the stream are disassociated from it and fl
 
 Even if the call fails, the stream passed as parameter will no longer be associated with the file nor its buffers.
 
-**`rename`**
+### `rename`
 
 Changes the name of the file or directory specified by oldname to newname.
 
@@ -73,11 +72,11 @@ This is an operation performed directly on a file; No streams are involved in th
 
 If oldname and newname specify different paths and this is supported by the system, the file is moved to the new location.
 
-**`remove`**
+### `remove`
 
 Deletes the file whose name is specified in filename. If the file is successfully deleted, a zero value is returned. On failure, a nonzero value is returned. 
 
-**`fseek`**
+### `fseek`
 
 Sets the position indicator associated with the stream to a new position.
 
@@ -98,8 +97,50 @@ origin:
 | SEEK_CUR | Current position of the file pointer |
 | SEEK_END | End of file * |
   
+### `ftell`
+
+Returns the current value of the position indicator of the stream.
+
+For binary streams, this is the number of bytes from the beginning of the file.
+
+### `rewind`  
   
-  
-  
-  
-  
+Sets the position indicator associated with stream to the beginning of the file.
+
+The end-of-file and error internal indicators associated to the stream are cleared after a successful call to this function, and all effects from previous calls to ungetc on this stream are dropped.
+
+On streams open for update (read+write), a call to rewind allows to switch between reading and writing.
+
+### `fflush`  
+
+If the given stream was open for writing (or if it was open for updating and the last i/o operation was an output operation) any unwritten data in its output buffer is written to the file.
+
+If stream is a null pointer, all such streams are flushed.
+
+# Reading input
+
+## Functions
+
+| Function | Syntax |
+| -------- | --------- |
+| [`fgetc`](http://www.cplusplus.com/reference/cstdio/fgetc/) | `int fgetc ( FILE * stream );` |
+| [`fputc`](http://www.cplusplus.com/reference/cstdio/fputc/) | `int fputc ( int character, FILE * stream );` |
+| [`fgets`](http://www.cplusplus.com/reference/cstdio/fgets/) | `char * fgets ( char * str, int num, FILE * stream );` |
+| [`fputs`](http://www.cplusplus.com/reference/cstdio/fputs/) | `int fputs ( const char * str, FILE * stream );` |
+| [`fread`](http://www.cplusplus.com/reference/cstdio/fread/) | `size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );` |
+| [`fwrite`](http://www.cplusplus.com/reference/cstdio/fwrite/) | `size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
+` |
+
+## `fgetc`
+
+## `fputc`
+
+## `fgets`
+
+## `fputs`
+
+## `fread`
+
+## `fwrite`
+
+
