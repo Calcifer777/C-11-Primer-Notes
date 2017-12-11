@@ -35,6 +35,9 @@ I file sono identificati da:
 | [`feof`](http://www.cplusplus.com/reference/cstdio/feof/)     | `int feof ( FILE * stream );` |
 | [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` |
 | [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` |
+| [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` |
+| [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` |
+| [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `int fseek ( FILE * stream, long int offset, int origin );` |
 
 
 **`fopen`**
@@ -74,18 +77,29 @@ If oldname and newname specify different paths and this is supported by the syst
 
 Deletes the file whose name is specified in filename. If the file is successfully deleted, a zero value is returned. On failure, a nonzero value is returned. 
 
-```c++
-/* fopen example */
-#include <stdio.h>
-int main ()
-{
-  FILE * pFile;
-  pFile = fopen ("myfile.txt","w");
-  if (pFile!=NULL)
-  {
-    fputs ("fopen example",pFile);
-    fclose (pFile);
-  }
-  return 0;
-}
-```
+**`fseek`**
+
+Sets the position indicator associated with the stream to a new position.
+
+For streams open in binary mode, the new position is defined by adding offset to a reference position specified by origin.
+
+For streams open in text mode, offset shall either be zero or a value returned by a previous call to ftell, and origin shall necessarily be SEEK_SET.
+
+offset:
+- Binary files: Number of bytes to offset from origin.
+- Text files: Either zero, or a value returned by ftell.
+
+origin:
+- Position used as reference for the offset. It is specified by one of the following constants defined in <cstdio> exclusively to be used as arguments for this function:
+  
+|Constant	| Reference position |
+| ------- | ------------------ |
+| SEEK_SET | Beginning of file |
+| SEEK_CUR | Current position of the file pointer |
+| SEEK_END | End of file * |
+  
+  
+  
+  
+  
+  
