@@ -173,7 +173,7 @@ return 0;
 
 const size_t MAX_LENGTH = 30;
 
-typedef struct Person {
+typedef struct {
     int id;
     char name[30];
     int age;
