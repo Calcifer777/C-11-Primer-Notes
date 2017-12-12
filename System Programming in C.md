@@ -20,14 +20,14 @@ Files attributes:
 | -------- | ------ | ----------- |
 | [`fopen`](http://www.cplusplus.com/reference/cstdio/fopen/) | `FILE * fopen(const char filename, const char * mode)` | Opens the file whose name is specified in the parameter filename and associates it with a stream that can be identified in future operations by the FILE pointer returned |
 | [`fclose`](http://www.cplusplus.com/reference/cstdio/fclose/) | `int fclose ( FILE * stream );` | Closes the file associated with the stream and disassociates it. Even if the call fails, the stream passed as parameter will no longer be associated with the file nor its buffers |
-| [`remove`](http://www.cplusplus.com/reference/cstdio/remove/) | `int remove ( const char * filename );` | Deletes the file whose name is specified in filename. If the file is successfully deleted, a zero value is returned |
-| [`rename`](http://www.cplusplus.com/reference/cstdio/rename/) | `int rename ( const char * oldname, const char * newname );` | Changes the name of the file or directory specified by oldname to newname. This is an operation performed directly on a file; no streams are involved in the operation. If oldname and newname specify different paths and this is supported by the system, the file is moved to the new location |
-| [`feof`](http://www.cplusplus.com/reference/cstdio/feof/)     | `int feof ( FILE * stream );` | |
+| [`remove`](http://www.cplusplus.com/reference/cstdio/remove/) | `int remove(const char *filename);` | Deletes the file whose name is specified in filename. If the file is successfully deleted, a zero value is returned |
+| [`rename`](http://www.cplusplus.com/reference/cstdio/rename/) | `int rename(const char *oldname, const char *newname );` | Changes the name of the file or directory specified by oldname to newname. This is an operation performed directly on a file; no streams are involved in the operation. If oldname and newname specify different paths and this is supported by the system, the file is moved to the new location |
+| [`feof`](http://www.cplusplus.com/reference/cstdio/feof/)     | `int feof ( FILE * stream );` | Checks whether the end-of-File indicator associated with stream is set, returning a value different from zero if it is. |
 | [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` | |
 | [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` | |
 | [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` | |
 | [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` | |
-| [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` | |
+| [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` | Sets the position indicator associated with stream to the beginning of the file. The EOF and error internal indicators  are cleared. On streams open for update (read+write), switches between reading and writing. |
 | [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` | |
 
 **`fopen`**
@@ -73,14 +73,6 @@ origin:
 Returns the current value of the position indicator of the stream.
 
 For binary streams, this is the number of bytes from the beginning of the file.
-
-### `rewind`  
-  
-Sets the position indicator associated with stream to the beginning of the file.
-
-The end-of-file and error internal indicators associated to the stream are cleared after a successful call to this function, and all effects from previous calls to ungetc on this stream are dropped.
-
-On streams open for update (read+write), a call to rewind allows to switch between reading and writing.
 
 ### `fflush`  
 
@@ -156,7 +148,9 @@ Format specifier: `%[*][width][length]specifier`
 
 Note: use always `fgets(string_to_fill, buffer_size, stdin)` instead of `scanf` to prevent bufferoverflow.
 
-Examples:
+#Examples
+
+**Read line from file**
 
 ```c++
 FILE *fp;
@@ -169,4 +163,22 @@ printf("CURR_POS: %d\n", ftell(fp));
 fscanf(fp, "%[^\n]", str);
 printf("%s", str);
 return 0;
+```
+
+**Read multiple lines from fil**
+
+```c++
+FILE *fp;
+fp = fopen("test.txt", "w+");
+fputs("1,marco,27,Milano (MI)\n2,Ciccio,30,Parma (PR)", fp);
+rewind(fp);
+
+char line[MAX_LENGTH];
+Person *p;
+while (feof(fp) == 0) {
+    (fgets(line, MAX_LENGTH-1, fp));
+    line[strcspn(line, "\n")] = 0;
+    printf("%s\n", line);
+}
+
 ```
