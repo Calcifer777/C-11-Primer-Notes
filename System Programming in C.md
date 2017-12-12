@@ -26,9 +26,9 @@ Files attributes:
 | [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` | |
 | [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` | |
 | [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` | |
-| [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` | |
+| [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` | Returns the current value of the position indicator of the stream. For binary streams, this is the number of bytes from the beginning of the file. |
 | [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` | Sets the position indicator associated with stream to the beginning of the file. The EOF and error internal indicators  are cleared. On streams open for update (read+write), switches between reading and writing. |
-| [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` | |
+| [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` | If the given stream was open for writing (or if it was open for updating and the last i/o operation was an output operation) any unwritten data in its output buffer is written to the file. |
 
 **`fopen`**
 
@@ -68,18 +68,6 @@ origin:
 | SEEK_CUR | Current position of the file pointer |
 | SEEK_END | End of file * |
   
-### `ftell`
-
-Returns the current value of the position indicator of the stream.
-
-For binary streams, this is the number of bytes from the beginning of the file.
-
-### `fflush`  
-
-If the given stream was open for writing (or if it was open for updating and the last i/o operation was an output operation) any unwritten data in its output buffer is written to the file.
-
-If stream is a null pointer, all such streams are flushed.
-
 # Reading input
 
 ## Functions
