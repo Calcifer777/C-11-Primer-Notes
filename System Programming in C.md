@@ -1,13 +1,4 @@
 
-- Gestione accessi ai file
-  - Aprire un file
-  - Leggere un file (carattere, stringa, blocco)
-  - Scrivere un file
-  - Chiudere un file
-- Operazioni sulle directories
-  - Spostare un file
-  - Cambiare il nome di un file
-  - Spostare o eliminare una directory
 - Operazioni sui processi
   - Generare processi slave e master
   - Terminare processi
@@ -127,9 +118,8 @@ If stream is a null pointer, all such streams are flushed.
 | [`fputc`](http://www.cplusplus.com/reference/cstdio/fputc/) | `int fputc ( int character, FILE * stream );` |
 | [`fgets`](http://www.cplusplus.com/reference/cstdio/fgets/) | `char * fgets ( char * str, int num, FILE * stream );` |
 | [`fputs`](http://www.cplusplus.com/reference/cstdio/fputs/) | `int fputs ( const char * str, FILE * stream );` |
-| [`fread`](http://www.cplusplus.com/reference/cstdio/fread/) | `size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );` |
-| [`fwrite`](http://www.cplusplus.com/reference/cstdio/fwrite/) | `size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
-` |
+| [`fread`](http://www.cplusplus.com/reference/cstdio/fread) |`size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );` |
+| [`fwrite`](http://www.cplusplus.com/reference/cstdio/fwrite/) | `size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );` |
 
 ## `fgetc`
 
@@ -170,4 +160,16 @@ Writes an array of count elements, each one with a size of size bytes, from the 
 The position indicator of the stream is advanced by the total number of bytes written.
 
 Internally, the function interprets the block pointed by ptr as if it was an array of (size * count) elements of type unsigned char, and writes them sequentially to stream as if fputc was called for each byte
+
+# I/O functions
+
+| Function | Syntax |
+| -------- | --------- |
+| [`scanf`](http://www.cplusplus.com/reference/cstdio/scanf/) | `int scanf ( const char * format, ... );` |
+| [`printf`](http://www.cplusplus.com/reference/cstdio/printf/) | `int printf ( const char * format, ... );` |
+| [`sscanf`](http://www.cplusplus.com/reference/cstdio/sscanf/) | `int sscanf ( const char * s, const char * format, ...);` |
+| [`sprintf`](http://www.cplusplus.com/reference/cstdio/sprintf/) | `int sprintf ( char * str, const char * format, ... );` |
+| [`fscanf`](http://www.cplusplus.com/reference/cstdio/fscanf/) | `int fscanf ( FILE * stream, const char * format, ... );`|
+| [`fprintf`](http://www.cplusplus.com/reference/cstdio/fprintf/) | `int fprintf ( FILE * stream, const char * format, ... );` |
+
 
