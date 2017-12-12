@@ -16,21 +16,21 @@ Files attributes:
 
 ## Functions
 
-| Function | Syntax |
-| -------- | --------- |
-| [`fopen`](http://www.cplusplus.com/reference/cstdio/fopen/) | `FILE * fopen(const char filename, const char * mode)` |
-| [`fclose`](http://www.cplusplus.com/reference/cstdio/fclose/) | `int fclose ( FILE * stream );` |
-| [`remove`](http://www.cplusplus.com/reference/cstdio/remove/) | `int remove ( const char * filename );` | 
-| [`rename`](http://www.cplusplus.com/reference/cstdio/rename/) | `int rename ( const char * oldname, const char * newname );` |
-| [`feof`](http://www.cplusplus.com/reference/cstdio/feof/)     | `int feof ( FILE * stream );` |
-| [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` |
-| [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` |
-| [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` |
-| [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` |
-| [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` |
-| [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` |
+| Function | Syntax | Description |
+| -------- | ------ | ----------- |
+| [`fopen`](http://www.cplusplus.com/reference/cstdio/fopen/) | `FILE * fopen(const char filename, const char * mode)` | Opens the file whose name is specified in the parameter filename and associates it with a stream that can be identified in future operations by the FILE pointer returned |
+| [`fclose`](http://www.cplusplus.com/reference/cstdio/fclose/) | `int fclose ( FILE * stream );` | Closes the file associated with the stream and disassociates it. Even if the call fails, the stream passed as parameter will no longer be associated with the file nor its buffers |
+| [`remove`](http://www.cplusplus.com/reference/cstdio/remove/) | `int remove ( const char * filename );` | |
+| [`rename`](http://www.cplusplus.com/reference/cstdio/rename/) | `int rename ( const char * oldname, const char * newname );` | |
+| [`feof`](http://www.cplusplus.com/reference/cstdio/feof/)     | `int feof ( FILE * stream );` | |
+| [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` | |
+| [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` | |
+| [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` | |
+| [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` | |
+| [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` | |
+| [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` | |
 
-### `fopen`
+**`fopen`**
 
 | Mode | Result |
 | ---- | ------ |
@@ -46,14 +46,6 @@ Use `"b"` at the end of the `mode` options to open a file in binary mode.
 Use `"x"` to force the function to fail if the file already exist, instead of overwriting it.
 
 Returns NULL if the file does not exist.
-
-### `fclose`
-
-Closes the file associated with the stream and disassociates it. Returns `0` if the stream is successfully closed.
-
-All internal buffers associated with the stream are disassociated from it and flushed: the content of any unwritten output buffer is written and the content of any unread input buffer is discarded.
-
-Even if the call fails, the stream passed as parameter will no longer be associated with the file nor its buffers.
 
 ### `rename`
 
@@ -163,15 +155,30 @@ Internally, the function interprets the block pointed by ptr as if it was an arr
 
 # I/O functions
 
-| Function | Syntax |
-| -------- | --------- |
-| [`scanf`](http://www.cplusplus.com/reference/cstdio/scanf/) | `int scanf ( const char * format, ... );` |
-| [`printf`](http://www.cplusplus.com/reference/cstdio/printf/) | `int printf ( const char * format, ... );` |
-| [`sscanf`](http://www.cplusplus.com/reference/cstdio/sscanf/) | `int sscanf ( const char * s, const char * format, ...);` |
-| [`sprintf`](http://www.cplusplus.com/reference/cstdio/sprintf/) | `int sprintf ( char * str, const char * format, ... );` |
-| [`fscanf`](http://www.cplusplus.com/reference/cstdio/fscanf/) | `int fscanf ( FILE * stream, const char * format, ... );`|
-| [`fprintf`](http://www.cplusplus.com/reference/cstdio/fprintf/) | `int fprintf ( FILE * stream, const char * format, ... );` |
+| Function | Syntax | Description |
+| -------- | ------ | ----------- |
+| [`scanf`](http://www.cplusplus.com/reference/cstdio/scanf/) | `int scanf ( const char * format, ... );` | |
+| [`printf`](http://www.cplusplus.com/reference/cstdio/printf/) | `int printf ( const char * format, ... );` | |
+| [`sscanf`](http://www.cplusplus.com/reference/cstdio/sscanf/) | `int sscanf ( const char * s, const char * format, ...);` | |
+| [`sprintf`](http://www.cplusplus.com/reference/cstdio/sprintf/) | `int sprintf ( char * str, const char * format, ... );` | |
+| [`fscanf`](http://www.cplusplus.com/reference/cstdio/fscanf/) | `int fscanf ( FILE * stream, const char * format, ... );`| |
+| [`fprintf`](http://www.cplusplus.com/reference/cstdio/fprintf/) | `int fprintf ( FILE * stream, const char * format, ... );` | Writes a string pointed by format to the stream|
 
 Format specifier: `%[*][width][length]specifier`
 
 Note: use always `fgets(string_to_fill, buffer_size, stdin)` instead of `scanf` to prevent bufferoverflow.
+
+Examples:
+
+```c++
+FILE *fp;
+fp = fopen("test.txt", "w+");
+fputs("This is the content of the file test.txt.\n", fp);
+fseek(fp, 0, SEEK_SET);
+size_t BUFF_SIZE = 50;
+char str[BUFF_SIZE];
+printf("CURR_POS: %d\n", ftell(fp));
+fscanf(fp, "%[^\n]", str);
+printf("%s", str);
+return 0;
+```
