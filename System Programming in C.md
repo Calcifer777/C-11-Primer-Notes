@@ -172,4 +172,6 @@ Internally, the function interprets the block pointed by ptr as if it was an arr
 | [`fscanf`](http://www.cplusplus.com/reference/cstdio/fscanf/) | `int fscanf ( FILE * stream, const char * format, ... );`|
 | [`fprintf`](http://www.cplusplus.com/reference/cstdio/fprintf/) | `int fprintf ( FILE * stream, const char * format, ... );` |
 
+Format specifier: `%[*][width][length]specifier`
 
+Note: use always `fgets(string_to_fill, buffer_size, stdin)` instead of `scanf` to prevent bufferoverflow.
