@@ -165,20 +165,47 @@ printf("%s", str);
 return 0;
 ```
 
-**Read multiple lines from fil**
+**Read multiple lines from file into an object**
 
 ```c++
-FILE *fp;
-fp = fopen("test.txt", "w+");
-fputs("1,marco,27,Milano (MI)\n2,Ciccio,30,Parma (PR)", fp);
-rewind(fp);
+#include <stdio.h>
+#include <string.h>
 
-char line[MAX_LENGTH];
-Person *p;
-while (feof(fp) == 0) {
-    (fgets(line, MAX_LENGTH-1, fp));
-    line[strcspn(line, "\n")] = 0;
-    printf("%s\n", line);
+const size_t MAX_LENGTH = 30;
+
+typedef struct Person {
+    int id;
+    char name[30];
+    int age;
+    char address[30];
+} Person ;
+
+int main(void){
+    FILE *fp;
+    fp = fopen("test.txt", "w+");
+    fputs("1,marco,27,Milano (MI)\n2,Ciccio,30,Parma (PR)", fp);
+    rewind(fp);
+    const int LENGTH = MAX_LENGTH-1;
+    char line[MAX_LENGTH];
+    Person p[2];
+    int n = 0;
+    printf("Righe lette:\n");
+    while (feof(fp) == 0) {
+        (fgets(line, MAX_LENGTH-1, fp));
+        line[strcspn(line, "\n")] = 0;
+        printf("%s\n", line);
+        sscanf(line, "%d , %39[^,] , %d , %39[^,] ", &p[n].id, &p[n].name, &p[n].age, &p[n].address);
+        ++n;
+    }
+    printf("\nValori oggetti:\n");
+    for (int i = 0; i != n; ++i) {
+        printf("P%d.id: %d\n", i, p[i].id);
+        printf("P%d.name: %s\n", i, p[i].name);
+        printf("P%d.age: %d\n", i, p[i].age);
+        printf("P%d.address: %s\n", i, p[i].address);
+    }   
+    return 0;
 }
-
 ```
+
+[Convertire intero a stringa con il preprocessore](https://stackoverflow.com/questions/25410690/scanf-variable-length-specifier)
