@@ -47,7 +47,7 @@ Use `"x"` to force the function to fail if the file already exist, instead of ov
 
 Returns NULL if the file is opened in read mode but it does not exist.
 
-### `fseek`
+**`fseek`**
 
 Sets the position indicator associated with the stream to a new position.
 
@@ -72,40 +72,14 @@ origin:
 
 ## Functions
 
-| Function | Syntax |
-| -------- | --------- |
-| [`fgetc`](http://www.cplusplus.com/reference/cstdio/fgetc/) | `int fgetc ( FILE * stream );` |
-| [`fputc`](http://www.cplusplus.com/reference/cstdio/fputc/) | `int fputc ( int character, FILE * stream );` |
-| [`fgets`](http://www.cplusplus.com/reference/cstdio/fgets/) | `char * fgets ( char * str, int num, FILE * stream );` |
-| [`fputs`](http://www.cplusplus.com/reference/cstdio/fputs/) | `int fputs ( const char * str, FILE * stream );` |
+| Function | Syntax | Description |
+| -------- | ------ | ----------- |
+| [`fgetc`](http://www.cplusplus.com/reference/cstdio/fgetc/) | `int fgetc ( FILE * stream );` | Returns the character currently pointed by the internal file position indicator of the specified stream. The internal file position indicator is then advanced to the next character. If the stream is at the end-of-file when called, the function returns EOF and sets the end-of-file indicator for the stream (feof). |
+| [`fputc`](http://www.cplusplus.com/reference/cstdio/fputc/) | `int fputc ( int character, FILE * stream );` | Writes a character to the stream and advances the position indicator. |
+| [`fgets`](http://www.cplusplus.com/reference/cstdio/fgets/) | `char * fgets ( char * str, int num, FILE * stream );` | Reads characters from stream and stores them as a C string into str until (num-1) characters have been read or either a newline or the end-of-file is reached, whichever happens first. A newline character makes fgets stop reading, but it is included in the string copied to str. |
+| [`fputs`](http://www.cplusplus.com/reference/cstdio/fputs/) | `int fputs ( const char * str, FILE * stream );` | Writes the C string pointed by str to the stream. The function begins copying from the address specified (str) until it reaches the terminating null character ('\0'). This terminating null-character is not copied to the stream. |
 | [`fread`](http://www.cplusplus.com/reference/cstdio/fread) |`size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );` |
 | [`fwrite`](http://www.cplusplus.com/reference/cstdio/fwrite/) | `size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );` |
-
-## `fgetc`
-
-Returns the character currently pointed by the internal file position indicator of the specified stream. The internal file position indicator is then advanced to the next character.
-
-If the stream is at the end-of-file when called, the function returns EOF and sets the end-of-file indicator for the stream (feof).
-
-If a read error occurs, the function returns EOF and sets the error indicator for the stream (ferror).
-
-## `fputc`
-
-Writes a character to the stream and advances the position indicator.
-
-The character is written at the position indicated by the internal position indicator of the stream, which is then automatically advanced by one.
-
-## `fgets`
-
-Reads characters from stream and stores them as a C string into str until (num-1) characters have been read or either a newline or the end-of-file is reached, whichever happens first.
-
-A newline character makes fgets stop reading, but it is considered a valid character by the function and included in the string copied to str.
-
-## `fputs`
-
-Writes the C string pointed by str to the stream.
-
-The function begins copying from the address specified (str) until it reaches the terminating null character ('\0'). This terminating null-character is not copied to the stream.
 
 ## `fread`
 
