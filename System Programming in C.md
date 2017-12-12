@@ -20,8 +20,8 @@ Files attributes:
 | -------- | ------ | ----------- |
 | [`fopen`](http://www.cplusplus.com/reference/cstdio/fopen/) | `FILE * fopen(const char filename, const char * mode)` | Opens the file whose name is specified in the parameter filename and associates it with a stream that can be identified in future operations by the FILE pointer returned |
 | [`fclose`](http://www.cplusplus.com/reference/cstdio/fclose/) | `int fclose ( FILE * stream );` | Closes the file associated with the stream and disassociates it. Even if the call fails, the stream passed as parameter will no longer be associated with the file nor its buffers |
-| [`remove`](http://www.cplusplus.com/reference/cstdio/remove/) | `int remove ( const char * filename );` | |
-| [`rename`](http://www.cplusplus.com/reference/cstdio/rename/) | `int rename ( const char * oldname, const char * newname );` | |
+| [`remove`](http://www.cplusplus.com/reference/cstdio/remove/) | `int remove ( const char * filename );` | Deletes the file whose name is specified in filename. If the file is successfully deleted, a zero value is returned |
+| [`rename`](http://www.cplusplus.com/reference/cstdio/rename/) | `int rename ( const char * oldname, const char * newname );` | Changes the name of the file or directory specified by oldname to newname. This is an operation performed directly on a file; no streams are involved in the operation. If oldname and newname specify different paths and this is supported by the system, the file is moved to the new location |
 | [`feof`](http://www.cplusplus.com/reference/cstdio/feof/)     | `int feof ( FILE * stream );` | |
 | [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` | |
 | [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` | |
@@ -45,19 +45,7 @@ Use `"b"` at the end of the `mode` options to open a file in binary mode.
 
 Use `"x"` to force the function to fail if the file already exist, instead of overwriting it.
 
-Returns NULL if the file does not exist.
-
-### `rename`
-
-Changes the name of the file or directory specified by oldname to newname.
-
-This is an operation performed directly on a file; No streams are involved in the operation.
-
-If oldname and newname specify different paths and this is supported by the system, the file is moved to the new location.
-
-### `remove`
-
-Deletes the file whose name is specified in filename. If the file is successfully deleted, a zero value is returned. On failure, a nonzero value is returned. 
+Returns NULL if the file is opened in read mode but it does not exist.
 
 ### `fseek`
 
