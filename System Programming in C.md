@@ -88,9 +88,20 @@ origin:
 
 Format specifier: `%[*][width][length]specifier`
 
-Note: use always `fgets(string_to_fill, buffer_size, stdin)` instead of `scanf` to prevent bufferoverflow.
-
 # Examples
+
+**Read and write to console**
+```c++
+#include <stdio.h>
+#define MAX_LENGTH 50
+int main()
+{
+    char str[MAX_LENGTH];
+    printf("Hi, enter your name: ");
+    fgets(str, MAX_LENGTH-1, stdin); // It is better to use fgets instead of scanf for user input to prevent buffer overflow
+    printf("Hi, %s", str);
+}
+```
 
 **Read line from file**
 
