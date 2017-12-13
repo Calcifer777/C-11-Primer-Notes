@@ -72,22 +72,8 @@ origin:
 | [`fputc`](http://www.cplusplus.com/reference/cstdio/fputc/) | `int fputc ( int character, FILE * stream );` | Writes a character to the stream and advances the position indicator. |
 | [`fgets`](http://www.cplusplus.com/reference/cstdio/fgets/) | `char * fgets ( char * str, int num, FILE * stream );` | Reads characters from stream and stores them as a C string into str until (num-1) characters have been read or either a newline or the end-of-file is reached, whichever happens first. A newline character makes fgets stop reading, but it is included in the string copied to str. |
 | [`fputs`](http://www.cplusplus.com/reference/cstdio/fputs/) | `int fputs ( const char * str, FILE * stream );` | Writes the C string pointed by str to the stream. The function begins copying from the address specified (str) until it reaches the terminating null character ('\0'). This terminating null-character is not copied to the stream. |
-| [`fread`](http://www.cplusplus.com/reference/cstdio/fread) |`size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );` |
-| [`fwrite`](http://www.cplusplus.com/reference/cstdio/fwrite/) | `size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );` |
-
-## `fread`
-
-Reads an array of count elements, each one with a size of size bytes, from the stream and stores them in the block of memory specified by ptr.
-
-The position indicator of the stream is advanced by the total amount of bytes read.
-
-## `fwrite`
-
-Writes an array of count elements, each one with a size of size bytes, from the block of memory pointed by ptr to the current position in the stream.
-
-The position indicator of the stream is advanced by the total number of bytes written.
-
-Internally, the function interprets the block pointed by ptr as if it was an array of (size * count) elements of type unsigned char, and writes them sequentially to stream as if fputc was called for each byte
+| [`fread`](http://www.cplusplus.com/reference/cstdio/fread) |`size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );` | Reads an array of count elements, each one with a size of size bytes, from the stream and stores them in the block of memory specified by ptr. The position indicator of the stream is advanced by the total amount of bytes read. | 
+| [`fwrite`](http://www.cplusplus.com/reference/cstdio/fwrite/) | `size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );` | Writes an array of count elements, each one with a size of size bytes, from the block of memory pointed by ptr to the current position in the stream. The position indicator of the stream is advanced by the total number of bytes written. |
 
 # I/O functions
 
@@ -104,7 +90,7 @@ Format specifier: `%[*][width][length]specifier`
 
 Note: use always `fgets(string_to_fill, buffer_size, stdin)` instead of `scanf` to prevent bufferoverflow.
 
-#Examples
+# Examples
 
 **Read line from file**
 
