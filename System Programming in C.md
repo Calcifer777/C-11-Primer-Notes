@@ -118,7 +118,7 @@ int main()
     float height;
     printf("Hi, enter your name: ");
     // It is better to use fgets instead of scanf 
-    // for user inpu to prevent buffer overflow
+    // for user input to prevent buffer overflow
     fgets(str, MAX_LENGTH-1, stdin);
     str[strcspn(str, "\n")] = \0;   // Cleans \n at the end of the string
     printf("Hi %s, please enter your age: ", str);
@@ -143,7 +143,7 @@ int main()
 {
 FILE *fp;
 fp = fopen("test.txt", "w+");
-fputs("This is the content of the file test.txt.\n", fp);
+fprintf(fp, "This is the content of the file test.txt.\n");
 fseek(fp, 0, SEEK_SET); //Sets the cursor at the beginning of the file
 char str[BUFF_SIZE];
 fscanf(fp, "%[^\n]", str);
@@ -203,6 +203,41 @@ return 0;
 }
 ```
 
+**Write and read an array of objects to a file**
+```c++
+#include <stdio.h>
+
+#define MAX_LENGTH 30
+
+typedef struct {
+    int id;
+    char name[MAX_LENGTH];
+    int age;
+    char address[MAX_LENGTH];
+} Person ;
+
+int main(void){
+    Person pW[2] = {
+        {5, "marco", 27, "Milano (MI)"}
+        , {7, "Ciccio", 30, "Parma (PR)"}
+        };
+    
+    FILE *fp;
+    fp = fopen("test.txt", "w+");
+    fwrite(pW, sizeof(pW[0]), sizeof(pW)/sizeof(pW[0]), fp);
+    rewind(fp);
+    Person pR[2];
+    fread(pW, sizeof(pW[0]), sizeof(pW)/sizeof(pW[0]), fp);
+    printf("Valori oggetti:\n");
+    for (int i = 0; i != sizeof(pW)/sizeof(pW[0]); ++i) {
+        printf("P%d.id: %d\n", i, pW[i].id);
+        printf("P%d.name: %s\n", i, pW[i].name);
+        printf("P%d.age: %d\n", i, pW[i].age);
+        printf("P%d.address: %s\n", i, pW[i].address);
+    }
+    return 0;
+}
+```
 
 **Read multiple lines from file into an object**
 
