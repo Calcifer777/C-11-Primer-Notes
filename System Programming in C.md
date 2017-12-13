@@ -79,11 +79,11 @@ origin:
 
 | Function | Syntax | Description |
 | -------- | ------ | ----------- |
-| [`scanf`](http://www.cplusplus.com/reference/cstdio/scanf/) | `int scanf ( const char * format, ... );` | |
-| [`printf`](http://www.cplusplus.com/reference/cstdio/printf/) | `int printf ( const char * format, ... );` | |
-| [`sscanf`](http://www.cplusplus.com/reference/cstdio/sscanf/) | `int sscanf ( const char * s, const char * format, ...);` | |
-| [`sprintf`](http://www.cplusplus.com/reference/cstdio/sprintf/) | `int sprintf ( char * str, const char * format, ... );` | |
-| [`fscanf`](http://www.cplusplus.com/reference/cstdio/fscanf/) | `int fscanf ( FILE * stream, const char * format, ... );`| |
+| [`scanf`](http://www.cplusplus.com/reference/cstdio/scanf/) | `int scanf ( const char * format, ... );` |  Reads data from stdin and stores them according to the parameter format into the locations pointed by the additional arguments. The additional arguments should **point** to already allocated objects of the type specified by their corresponding format specifier within the format string.|
+| [`printf`](http://www.cplusplus.com/reference/cstdio/printf/) | `int printf ( const char * format, ... );` | Writes the C string pointed by format to the standard output (stdout).|
+| [`sscanf`](http://www.cplusplus.com/reference/cstdio/sscanf/) | `int sscanf ( const char * s, const char * format, ...);` | Reads data from s and stores them according to parameter format into the locations given by the additional arguments, as if scanf was used, but reading from s instead of the standard input (stdin). |
+| [`sprintf`](http://www.cplusplus.com/reference/cstdio/sprintf/) | `int sprintf ( char * str, const char * format, ... );` | Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the buffer pointed by str. |
+| [`fscanf`](http://www.cplusplus.com/reference/cstdio/fscanf/) | `int fscanf ( FILE * stream, const char * format, ... );`| Reads data from the stream and stores them according to the parameter format into the locations pointed by the additional arguments. |
 | [`fprintf`](http://www.cplusplus.com/reference/cstdio/fprintf/) | `int fprintf ( FILE * stream, const char * format, ... );` | Writes a string pointed by format to the stream|
 
 Format specifier: `%[*][width][length]specifier`
