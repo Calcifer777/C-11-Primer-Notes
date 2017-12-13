@@ -1,18 +1,20 @@
 
-- Operazioni sui processi
-  - Generare processi slave e master
-  - Terminare processi
-  - Sostituire il codice di un processo in esecuzion
-  
+
 # Files and Operations on Files
 
-Files attributes:
-- Name
-- Directory
-- Length (# byte)
-- Date/hour created
-- Date/hour last modified
-- Access profiles (r, w, x)
+Source: C Programming, a modern approach ch. 22
+
+## Streams
+
+The term stream means any source of input or destination for output.
+
+**Input redirection**: when executing a program from command line, reads from a file instead of from keyboard. E.g. `test.exe <input.dat`
+
+**Output redirection**: when executing a program from command line, writes to a file instead of to the console. E.g. `test.exe >ouput.dat`
+
+### Text and Binary Files
+
+
 
 ## Functions
 
@@ -29,6 +31,7 @@ Files attributes:
 | [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` | Returns the current value of the position indicator of the stream. For binary streams, this is the number of bytes from the beginning of the file. |
 | [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` | Sets the position indicator associated with stream to the beginning of the file. The EOF and error internal indicators  are cleared. On streams open for update (read+write), switches between reading and writing. |
 | [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` | If the given stream was open for writing (or if it was open for updating and the last i/o operation was an output operation) any unwritten data in its output buffer is written to the file. |
+| [`tempfile`](http://www.cplusplus.com/reference/cstdio/tmpfile/) |`FILE * tmpfile ( void );` | Creates a temporary binary file, open for update ("wb+" mode, see fopen for details) with a filename guaranteed to be different from any other existing file. The temporary file created is automatically deleted when the stream is closed (fclose) or when the program terminates normally.|
 
 **`fopen`**
 
@@ -88,35 +91,118 @@ origin:
 
 Format specifier: `%[*][width][length]specifier`
 
+A numerical value can be formatted according to `%fm.pX`
+- `m` indicates the minimum field width
+- `p` indicates the precision
+- `f` are the flags:
+  - `-` to left-justify the value
+  - `+` preceeds the value with the sign
+  - `0` pads the width of the printed field with zeros
+
+`fprintf` is a more general function that prints to any stream, compared with `printf` that prints only to `stdout`. Same for `scanf`
+
 # Examples
 
 **Read and write to console**
 ```c++
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #define MAX_LENGTH 50
 int main()
 {
     char str[MAX_LENGTH];
+    char strAge[MAX_LENGTH];
+    char strHeight[MAX_LENGTH];
+    int age;
+    float height;
     printf("Hi, enter your name: ");
-    fgets(str, MAX_LENGTH-1, stdin); // It is better to use fgets instead of scanf for user input to prevent buffer overflow
-    printf("Hi, %s", str);
+    // It is better to use fgets instead of scanf 
+    // for user inpu to prevent buffer overflow
+    fgets(str, MAX_LENGTH-1, stdin);
+    str[strcspn(str, "\n")] = \0;   // Cleans \n at the end of the string
+    printf("Hi %s, please enter your age: ", str);
+    fgets(strAge, MAX_LENGTH, stdin);
+    strAge[strcspn(strAge, "\n")] = 0;  // Cleans \n at the end of the string
+    age = atoi(strAge);
+    printf("Your age is: %d\n", age);
+    printf("Please enter your height (mt): ");
+    fgets(strHeight, MAX_LENGTH, stdin);
+    strHeight[strcspn(strHeight, "\n")] = 0;
+    height = atof(strHeight);
+    printf("Your height is: %4.2f\n", height);
+    return 0;
 }
 ```
 
-**Read line from file**
-
+**Write and read line from file**
 ```c++
+#include <stdio.h>
+#define BUFF_SIZE 50
+int main() 
+{
 FILE *fp;
 fp = fopen("test.txt", "w+");
 fputs("This is the content of the file test.txt.\n", fp);
-fseek(fp, 0, SEEK_SET);
-size_t BUFF_SIZE = 50;
+fseek(fp, 0, SEEK_SET); //Sets the cursor at the beginning of the file
 char str[BUFF_SIZE];
-printf("CURR_POS: %d\n", ftell(fp));
 fscanf(fp, "%[^\n]", str);
 printf("%s", str);
+fclose(fp);
 return 0;
+}
 ```
+
+**Write and read array to and from file**
+```c++
+#include <stdio.h>
+int main() 
+{
+    int iArr[5] = {1, 2, 3, 4, 5};
+    FILE *fp;
+    fp = fopen("test.txt", "w+");
+    fwrite(iArr, sizeof(iArr[0]), sizeof(iArr)/sizeof(iArr[0]), fp);
+    rewind(fp);
+    int oArr[5];
+    fread(oArr, sizeof(oArr[0]), sizeof(oArr)/sizeof(oArr[0]), fp);
+    int i;
+    while (i != sizeof(oArr)/sizeof(oArr[0]))
+        fprintf(stdout, "%d\n", oArr[i++]);
+    fclose(fp);
+return 0;
+}
+```
+
+**Read and write an object to a file**
+```c++
+#include <stdio.h>
+
+#define NAME_LENGTH 30
+
+typedef struct {
+    int id;
+    char name[NAME_LENGTH];
+} Student;
+
+int main() 
+{
+    Student s = {7, "Marco"};
+    FILE *fp;
+    fp = fopen("test.txt", "w+");
+    //fwrite needs a pointer to an array/struc, not a value!
+    fwrite(&s, sizeof(s), 1, fp);   
+    // Returns the cursor a the start of the filestream
+    rewind(fp);
+    Student s2;
+    //fread needs a pointer to an array/struc, not a value!
+    fread(&s2, sizeof(s), 1, fp);
+    fprintf(stdout, "ID: %i\n", s2.id);
+    fprintf(stdout, "Name: %s\n", s2.name);
+    fclose(fp);
+return 0;
+}
+```
+
 
 **Read multiple lines from file into an object**
 
@@ -162,3 +248,11 @@ int main(void){
 ```
 
 [Convertire intero a stringa con il preprocessore](https://stackoverflow.com/questions/25410690/scanf-variable-length-specifier)
+
+
+
+- Operazioni sui processi
+  - Generare processi slave e master
+  - Terminare processi
+  - Sostituire il codice di un processo in esecuzion
+  
