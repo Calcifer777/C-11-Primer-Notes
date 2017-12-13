@@ -23,9 +23,9 @@ Files attributes:
 | [`remove`](http://www.cplusplus.com/reference/cstdio/remove/) | `int remove(const char *filename);` | Deletes the file whose name is specified in filename. If the file is successfully deleted, a zero value is returned |
 | [`rename`](http://www.cplusplus.com/reference/cstdio/rename/) | `int rename(const char *oldname, const char *newname );` | Changes the name of the file or directory specified by oldname to newname. This is an operation performed directly on a file; no streams are involved in the operation. If oldname and newname specify different paths and this is supported by the system, the file is moved to the new location |
 | [`feof`](http://www.cplusplus.com/reference/cstdio/feof/)     | `int feof ( FILE * stream );` | Checks whether the end-of-File indicator associated with stream is set, returning a value different from zero if it is. |
-| [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` | |
-| [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` | |
-| [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` | |
+| [`ferror`](http://www.cplusplus.com/reference/cstdio/ferror/) | `int ferror ( FILE * stream );` | Checks if the error indicator associated with stream is set, returning a value different from zero if it is. |
+| [`clearerr`](http://www.cplusplus.com/reference/cstdio/clearerr/) | `void clearerr ( FILE * stream );` | Resets both the error and the eof indicators of the stream. |
+| [`fseek`](http://www.cplusplus.com/reference/cstdio/fseek/) | `int fseek ( FILE * stream, long int offset, int origin );` | Sets the position indicator associated with the stream to a new position. For streams open in binary mode, the new position is defined by adding offset to a reference position specified by origin. For streams open in text mode, offset shall either be zero or a value returned by a previous call to ftell, and origin shall necessarily be SEEK_SET. |
 | [`ftell`](http://www.cplusplus.com/reference/cstdio/ftell/) | `long int ftell ( FILE * stream );` | Returns the current value of the position indicator of the stream. For binary streams, this is the number of bytes from the beginning of the file. |
 | [`rewind`](http://www.cplusplus.com/reference/cstdio/rewind/) | `void rewind ( FILE * stream );` | Sets the position indicator associated with stream to the beginning of the file. The EOF and error internal indicators  are cleared. On streams open for update (read+write), switches between reading and writing. |
 | [`fflush`](http://www.cplusplus.com/reference/cstdio/fflush/) | `int fflush ( FILE * stream );` | If the given stream was open for writing (or if it was open for updating and the last i/o operation was an output operation) any unwritten data in its output buffer is written to the file. |
@@ -48,12 +48,6 @@ Use `"x"` to force the function to fail if the file already exist, instead of ov
 Returns NULL if the file is opened in read mode but it does not exist.
 
 **`fseek`**
-
-Sets the position indicator associated with the stream to a new position.
-
-For streams open in binary mode, the new position is defined by adding offset to a reference position specified by origin.
-
-For streams open in text mode, offset shall either be zero or a value returned by a previous call to ftell, and origin shall necessarily be SEEK_SET.
 
 offset:
 - Binary files: Number of bytes to offset from origin.
