@@ -1,10 +1,7 @@
 
-
-# Files and Operations on Files
-
 Source: C Programming, a modern approach ch. 22
 
-## Streams
+# Streams
 
 The term stream means any source of input or destination for output.
 
@@ -12,11 +9,11 @@ The term stream means any source of input or destination for output.
 
 **Output redirection**: when executing a program from command line, writes to a file instead of to the console. E.g. `test.exe >ouput.dat`
 
-### Text and Binary Files
+## Text and Binary Files
 
 
 
-## Functions
+# Functions
 
 | Function | Syntax | Description |
 | -------- | ------ | ----------- |
