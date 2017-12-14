@@ -17,29 +17,30 @@ getppid()
 exec
 
 ```c++
-#include <stdio.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
+#include <stdio.h>      // fprintf
+#include <stdlib.h>     //exit
+#include <sys/types.h>   
+#include <unistd.h>     // fork
+#include <sys/wait.h>   // wait
 
-int main() {
+int main (char* program, char** arg_list)
+{
     pid_t pid;
     int status;
-    fprintf(stdout, "Master -> PID: %i\n", getpid());
-    fprintf(stdout, "Forking process...\n");
-    pid= fork();
-    
-    if (pid==0) {
-       /* Sono nello slave */
-        fprintf(stdout, "Slave -> PID %i\n", getpid());
-    } else {
-        /* Sono nel master*/
-        fprintf(stdout, "Master -> PID %i\n", getpid());;
+    pid = fork();
+    if(pid < 0){
+      fprintf(stderr, "Failed to fork() --- exiting...\n");
+      exit(1);
     }
-    
-    wait(&status);
-    
+    else if (pid == 0){ // --- inside the child process
+        fprintf(stdout, "Child -> PID: %i\n", getpid());
+    }
+    else{ // --- parent process
+        fprintf(stdout, "Parent -> PID: %i\n", getpid());
+        while(wait(&status) != pid)
+        printf("...\n");
+    }
+    fprintf(stdout, "Trerminating %i...\n", getpid());
     return 0;
 }
 ```
