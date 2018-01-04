@@ -35,11 +35,35 @@ If wstatus is not NULL, wait() and waitpid() store status information in the int
 
 The exit() function causes normal process termination and the value of status & 0377 is returned to the parent. The exit() function does not return.
 
-### [getpid, getppid]
+### [getpid, getppid](http://man7.org/linux/man-pages/man2/getpid.2.html)
 
-exec
+`pid_t getpid(void);`
+`pid_t getppid(void);`
 
-sleep
+getpid() returns the process ID (PID) of the calling process.  
+
+getppid() returns the process ID of the parent of the calling process.  This will be either the ID of the process that created this
+process using fork(), or, if that process has already terminated, the ID of the process to which this process has been reparented.
+
+### [exec](http://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html)
+
+`int exec(char* program_name, char** argv);`
+
+The exec() call replaces the entire current contents of the process with a new program. It loads the program into the current process space and runs it from the entry point.
+
+Returns 0 if the command is successfully executed; -1 if an error occurred.
+
+**The list of arguments must be terminated by a NULL pointer, and, since these are variadic functions, this pointer must be cast `(char *)` NULL.** [In depth](https://stackoverflow.com/questions/22570978/does-execl-needs-null-as-last-parameter)
+
+### [sleep](http://man7.org/linux/man-pages/man3/sleep.3.html)
+
+`unsigned int sleep(unsigned int seconds);`
+
+sleep() causes the calling thread to sleep either until the number of real-time seconds specified in seconds have elapsed or until a signal arrives which is not ignored.
+
+Returns 0 if the requested time has elapsed, or the number of seconds left to sleep, if the call was interrupted by a signal handler.
+
+## Snippets
 
 ```c++
 #include <stdio.h>      // fprintf
@@ -65,7 +89,7 @@ int main (char* program, char** arg_list)
         while(wait(&status) != pid)
         printf("...\n");
     }
-    fprintf(stdout, "Trerminating %i...\n", getpid());
+    fprintf(stdout, "Terminating %i...\n", getpid());
     return 0;
 }
 ```
